@@ -3,5 +3,41 @@
 {% block title %}Loja Python{% endblock %}  <!-- Muda o titulo da pagina -->
 
 {% block content %}
-    Olá!
+    <style>
+        .ficha input{
+            color: red;
+        }
+    </style>
+    <div class='ficha'>
+        <p>Criação de ficha</p>
+        <label for="personagem-nome">Nome do personagem</label>
+        <input class='ficha' id='personagem-nome'></input>
+        <p></p>
+        <label for="personagem-raca">Raça do personagem</label>
+        <select class='ficha' id='personagem-raca' onchange="changeRace()">
+            <option value='teste0'>Selecione a raça de seu personagem...</option>
+            <option value='teste1'>Gnomo</option>
+            <option value='teste2'>Humano</option>
+        </select>
+        <p></p>
+        <label id= 'personagem-classe-label' for="personagem-classe">Classe do personagem</label>
+        <select class='ficha' id='personagem-classe'>
+            <option value='teste0'>Selecione a classe de seu personagem...</option>
+        </select>
+        <p></p>
+        <p></p>
+    </div>
+
+    <script>
+        /*function changeRace() {
+            if (document.getElementById("personagem-raca").value == "teste0"){
+                document.getElementById("personagem-classe-label").hidden = true
+                document.getElementById("personagem-classe").hidden = true
+            }
+            else {
+                document.getElementById("personagem-classe-label").hidden = false
+                document.getElementById("personagem-classe").hidden = false
+            }  
+        }*/
+    </script>
 {% endblock %}
