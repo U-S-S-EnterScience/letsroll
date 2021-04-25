@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+.idea
 *.rsuser
 *.suo
 *.user
@@ -39,7 +40,7 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
-# MSTest test Results
+# MSTest mateus Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
