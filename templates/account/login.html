@@ -1,0 +1,18 @@
+{% extends 'base.html' %}           
+{% load socialaccount %}
+{% providers_media_js %}
+{% load crispy_forms_tags %}                                            <!-- Carrega o crispy form para ser usado na pagina -->
+
+{% block title %}Entrar{% endblock %}                                   <!-- Titulo da pagina -->
+
+{% block content %}
+    <h2>Entrar</h2>
+    <form method="post">                                                <!-- Formulário para logar -->
+        {% csrf_token %}
+        {{ form|crispy }}      
+        <button class="btn btn-success" type="submit">Entrar</button>   <!-- Botão de entrar -->
+        <a href="{% provider_login_url "facebook" method="js_sdk" %}"> Entrar com Facebook </a>
+        <a href="{% provider_login_url "google" %}"> Entrar com Google </a>
+        <a href="/password_reset">Esqueceu a senha?</a>
+    </form>
+{% endblock %}
