@@ -20,7 +20,7 @@ def call(url):
     return json.loads(r.text)
 
 
-def sheet(request):
+def home(request):
     ficha = dict(character_name="Drezon Tizar", race={"index": "elf", "name": "Elf", "url": "/api/races/elf"},
                  subrace={"index": "high-elf", "name": "High Elf", "url": "/api/subraces/high-elf"}, ability=[
             {"ability_score": {"index": "str", "name": "Strength", "url": "/api/ability-scores/str"}, "value": 13,
