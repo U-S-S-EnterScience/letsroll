@@ -1,11 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <p>{{ equipment }}</p>
+{% extends 'base.html' %}                   <!-- Traz todo o conteudo de "base.html" pra ca -->
 
-</body>
-</html>
+{% block title %}Let's Roll - Ficha{% endblock %}  <!-- Muda o titulo da pagina -->
+
+{% block content %}
+ <!--<p>{{ equipment }}</p> -->
+ <style>
+    .ficha input{
+        color: red;
+        font-family: "Papyrus",fantasy;
+        font-weight: bold;
+        border-color: black;
+        border-style:dashed;
+    }
+    .ficha input:focus{
+        color: red;
+        font-family: "Papyrus",fantasy;
+        font-weight: bold;
+        border-color:red;
+        border-style:dashed;
+        outline: none;
+    }
+    .ficha label{
+        color: black;
+        font-family: "Papyrus",fantasy;
+        font-size: x-large;
+        font-weight: bold;
+    }
+</style>
+ <div class='ficha' id='ficha'>
+    <label class='label' for="personagem-nome">Nome do personagem: </label>
+    <input class='ficha' id='personagem-nome' value='{{ character_name }}' readonly=true></input>
+    <p></p>
+    <label for="personagem-raca">Raça:</label>
+    <input class='ficha' id='personagem-raca' value='{{ race.name }}' readonly=true></input>
+    <p></p>
+    <label for="personagem-subraca">Sub-raça:</label>
+    <input class='ficha' id='personagem-subraca' value='{{ subrace.name }}' readonly=true></input>
+    <p></p>
+    <label for="personagem-habilidade">Habilidade(s):</label>
+    <input class='ficha' id='personagem-habilidade-1' value='{{ ability.0.ability_score.name }}: {{ ability.0.value }}' readonly=true></input>
+    <input class='ficha' id='personagem-habilidade-2' value='{{ ability.1.ability_score.name }}: {{ ability.1.value }}' readonly=true></input>
+    <input class='ficha' id='personagem-habilidade-3' value='{{ ability.2.ability_score.name }}: {{ ability.2.value }}' readonly=true></input>
+    <input class='ficha' id='personagem-habilidade-4' value='{{ ability.3.ability_score.name }}: {{ ability.3.value }}' readonly=true></input>
+    <input class='ficha' id='personagem-habilidade-5' value='{{ ability.4.ability_score.name }}: {{ ability.4.value }}' readonly=true></input>
+    <input class='ficha' id='personagem-habilidade-6' value='{{ ability.5.ability_score.name }}: {{ ability.5.value }}' readonly=true></input>
+    <p></p>
+    <label for="personagem-classe">Classe:</label>
+    <input class='ficha' id='personagem-classe' value='{{ classes.name }}' readonly=true></input>
+    <p></p>
+    <label id= 'personagem-arma-1-label' for="personagem-arma-1">Arma(s):</label>
+    <input class='ficha' id='personagem-arma-1' value='{{ equipment.0.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-2-label' for="personagem-arma-2" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-2' value='{{ equipment.1.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-3-label' for="personagem-arma-3" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-3' value='{{ equipment.2.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-4-label' for="personagem-arma-4" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-4' value='{{ equipment.3.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-5-label' for="personagem-arma-5" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-5' value='{{ equipment.4.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-6-label' for="personagem-arma-6" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-6' value='{{ equipment.5.equipment.name}}' readonly=true hidden=true></input>
+    <!-- <label id= 'personagem-arma-7-label' for="personagem-arma-7" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-7' value='{{ equipment.6.equipment.name}}' readonly=true hidden=true></input>
+    <p></p>
+    <!-- <label id= 'personagem-arma-8-label' for="personagem-arma-8" >Arma do personagem</label> -->
+    <input class='ficha' id='personagem-arma-8' value='{{ equipment.7.equipment.name}}' readonly=true hidden=true></input>
+    <p></p>
+</div>
+<script>
+    window.onload = function exibirArmas() {
+        for (i = 1; i <= '{{ equipment|length }}'; i++){
+            document.getElementById('personagem-arma-'+i).hidden = false
+        }
+    }
+</script>
+ {% endblock %}
