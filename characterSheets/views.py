@@ -8,4 +8,4 @@ def index(request):
     r = requests.get(url)
     js = json.loads(r.text)
     classe = js["index"]
-    return render(request, 'home.html', classe)
+    return render(request, 'cria_ficha.html', classe)

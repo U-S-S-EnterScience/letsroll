@@ -20,7 +20,7 @@ def call(url):
     return json.loads(r.text)
 
 
-def home(request):
+def sheet(request):
     ficha = dict(character_name="Drezon Tizar", race={"index": "elf", "name": "Elf", "url": "/api/races/elf"},
                  subrace={"index": "high-elf", "name": "High Elf", "url": "/api/subraces/high-elf"}, ability=[
             {"ability_score": {"index": "str", "name": "Strength", "url": "/api/ability-scores/str"}, "value": 13,
@@ -62,14 +62,14 @@ def home(request):
                           "url": "/api/traits/elf-weapon-training"},
                          {"index": "high-elf-cantrip", "name": "High Elf Cantrip: Ray of Frost",
                           "url": "/api/traits/high-elf-cantrip"}],
-                 classes={"index": "fighter", "name": "Fighter", "url": "/api/classes/fighter"}, hit_die=[10],
-                 hit_points=11, experience_points=0, armor_class=14, stats=[
+                 classes={"index": "fighter", "name": "Fighter", "url": "/api/classes/fighter"}, hit_die=10,
+                 hit_points=11, experience_points=0, armor_class=14, stats=
             {"level": 1, "ability_score_bonuses": 0, "prof_bonus": 2,
              "features": [{"index": "second-wind", "name": "Second Wind", "url": "/api/features/second-wind"},
                           {"index": "fighter-fighting-style-two-weapon-fighting",
                            "name": "Fighting Style: Two-Weapon Fighting",
                            "url": "/api/features/fighter-fighting-style-two-weapon-fighting"}],
-             "class_specific": {"action_surges": 0, "indomitable_uses": 0, "extra_attacks": 0}}], initiative=3,
+             "class_specific": {"action_surges": 0, "indomitable_uses": 0, "extra_attacks": 0}}, initiative=3,
                  saving_throws=[
                      {"saving": {"index": "str", "name": "STR", "url": "/api/ability-scores/str"}, "bonus": 3},
                      {"saving": {"index": "con", "name": "CON", "url": "/api/ability-scores/con"}, "bonus": 3}],
@@ -89,11 +89,12 @@ def home(request):
     return render(request, 'ficha.html', ficha)
 
 
-'''
+def cria_Ficha(request):
+    return render(request, 'cria_ficha.html')
 
-class HomePageView(TemplateView):
-    template_name = "home.html"
-'''
+
+def home(request):
+    return render(request, 'home.html')
 
 
 def password_reset_request(request):
