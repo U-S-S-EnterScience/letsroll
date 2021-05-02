@@ -2,70 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Character Sheet</title>
+    <title>Title</title>
 </head>
 <body>
-    <p>Character Name: {{ character_name }}</p>
-    <p>Race: {{ subrace.name }}</p>
-    <p>Alignment: {{ alignment }}</p>
-    <p>Speed: {{ speed }}</p>
-    <p>Size: {{ size }}</p>
-    <p>Hit Die: D{{ hit_die }}</p>
-    <p>Hit Points: {{ hit_points }}</p>
-    <p>Armor Class: {{ armor_class }}</p>
-    <p>Initiative: {{ initiative }}</p>
-
-    <h2>Attributes</h2>
-    <ul>
-    {% for value0 in ability %}
-        <li>{{ value0.ability_score.name }}: {{ value0.value }} ({{ value0.bonus }})</li>
-    {%endfor%}
-    </ul>
-
-    <h2>Proficiencies</h2>
-    <ul>
-    {% for value1 in proficiencies %}
-        <li>{{ value1.name }}</li>
-    {%endfor%}
-    </ul>
-
-    <h2>Languages</h2>
-    <ul>
-    {% for value2 in languages %}
-        <li>{{ value2.name }}</li>
-    {%endfor%}
-    </ul>
-
-    <h2>Skills</h2>
-    <ul>
-    {% for value3 in skills %}
-        <li>{{ value3.skill.name }}: {{ value3.bonus }}</li>
-    {%endfor%}
-    </ul>
-
-    <h2>Stats</h2>
-    <p>Proficience Bonus: {{ stats.prof_bonus }}</p>
-
-    <h3>Class Specificts</h3>
-    <ul>
-        {% for value4 in stats.class_specific.items %}
-            <li>{{ value4.0 }}: {{ value4.1 }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Features</h3>
-    <ul>
-        {% for value5 in stats.features %}
-            <li>{{ value5.name }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Equipments</h2>
-    <ul>
-        {% for value5 in equipment %}
-            <li>{{ value5.equipment.name }}, quantity: {{ value5.quantity }}</li>
-        {% endfor %}
-    </ul>
+    <p>{{ equipment }}</p>
 
 </body>
 </html>
