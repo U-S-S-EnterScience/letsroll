@@ -90,7 +90,17 @@ def ficha(request):
 
 
 def cria_Ficha(request):
-    return render(request, 'cria_ficha.html')
+    options = {
+    "races":[{"index": "dwarf", "name": "Dwarf", "url": "/api/races/dwarf"},
+              {"index": "elf", "name": "Elf", "url": "/api/races/elf"},
+              {"index": "halfling", "name": "Halfling", "url": "/api/races/halfling"},
+              {"index": "human", "name": "Human", "url": "/api/races/human"}],
+    "classes":[{"index": "cleric", "name": "Cleric", "url": "/api/classes/cleric"},
+            {"index": "fighter", "name": "Fighter", "url": "/api/classes/fighter"},
+            {"index": "rogue", "name": "Rogue", "url": "/api/classes/rogue"},
+            {"index": "wizard", "name": "Wizard", "url": "/api/classes/wizard"}]
+    }
+    return render(request, 'cria_ficha.html',options)
 
 
 def home(request):

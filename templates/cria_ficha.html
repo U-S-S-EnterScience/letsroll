@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Character</title>
+</head>
+<body>
+
+
+    <form>
+        <h2>Choose your character race</h2>
+        {% for item in races %}
+            <input type="radio" id="race" name="race" value= "{{ item }}">
+            <label for= "race">{{ item.name }}</label><br>
+        {%endfor%}
+        <p></p>
+        <h2>Choose your character class</h2>
+        {% for item1 in classes %}
+            <input type="radio" id="class" name="class" value= item1>
+            <label for= "class">{{ item1.name }}</label><br>
+        {%endfor%}
+    </form>
+
+</body>
+</html>
