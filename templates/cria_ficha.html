@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Character</title>
-</head>
-<body>
+{% extends 'base.html' %}                   <!-- Traz todo o conteudo de "base.html" pra ca -->
 
+{% block title %}Loja Python{% endblock %}  <!-- Muda o titulo da pagina -->
+
+{% block content %}
 
     <form>
         <h2>Choose your character race</h2>
@@ -21,5 +18,4 @@
         {%endfor%}
     </form>
 
-</body>
-</html>
+{% endblock %}
