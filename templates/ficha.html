@@ -4,165 +4,201 @@
 
 {% block content %}
     <style>
-        .ficha {
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+            /*border: 1px solid red;*/
+        }
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        
+        #ficha {
             background-image: url(https://cdn.discordapp.com/attachments/247457383486324737/839573346361278515/scroll_3.png);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            border-color: rgb(82, 6, 6);
-            border-style: groove;
-            width: 70%;
+            /*border-color: rgb(82, 6, 6);
+            border-style: groove;*/
+            width: 100%;
             padding: 8px;
         }
-        .ficha input{
+        .description-value {
             -webkit-text-stroke: 0.7px black; /* width and color */
             color: black;
-            background-color: rgb(197, 135, 2);
+            background-color: transparent;
             font-family: "Papyrus",fantasy;
             font-weight: bold;
-            font-size: x-large;
+            font-size: large;
             border-color: transparent;
             border-style:dashed;
             max-width: fit-content;
         }
-        .ficha input:hover/*, input:focus*/{
+        .description-value:hover/*, input:focus*/{
             -webkit-text-stroke: 0.7px black; /* width and color */
             color: red;
+            background-color: transparent;
             font-family: "Papyrus",fantasy;
             font-weight: bold;
             /*border-color:red;*/
             border-style:dashed;
             outline: none;
         }
-        .ficha label{
+        .label-description {
             -webkit-text-stroke: 0.7px black; /* width and color */
             color: red;
             font-family: "Papyrus",fantasy;
-            font-size:xx-large;
+            font-size: x-large;
             font-weight: bold;
         }
     </style>
 
-
-    <div class='ficha' id='ficha'>
-        <label class='label' for="character-name">Character Name: </label>
-        <input class='ficha' id='character-name' value='{{ character_name }}' readonly=true></input>
-        <p></p>
-        <label for="character-race">Race: </label>
-        <input class='ficha' id='character-race' value='{{ race.name }}' readonly=true></input>
-        <p></p>
-        <label for="character-subrace">Subrace:</label>
-        <input class='ficha' id='character-subrace' value='{{ subrace.name }}' readonly=true></input>
-        <p></p>
-        <label for="character-alignment">Alignment:</label>
-        <input class='ficha' id='character-alignment' value='{{ alignment }}' readonly=true></input>
-        <p></p>
-        <label for="character-speed">Speed:</label>
-        <input class='ficha' id='character-speed' value='{{ speed }}' readonly=true></input>
-        <p></p>
-        <label for="character-size">Size:</label>
-        <input class='ficha' id='character-size' value='{{ size }}' readonly=true></input>
-        <p></p>
-        <label for="character-hitdie">Hit Die:</label>
-        <input class='ficha' id='character-hitdie' value='D{{ hit_die }}' readonly=true></input>
-        <p></p>
-        <label for="character-hitpoints">Hit Points:</label>
-        <input class='ficha' id='character-hitpoints' value='{{ hit_points }}' readonly=true></input>
-        <p></p>
-        <label for="character-armorclass">Armor Class:</label>
-        <input class='ficha' id='character-armorclass' value='{{ armor_class }}' readonly=true></input>
-        <p></p>
-        <label for="character-initiative">Initiative:</label>
-        <input class='ficha' id='character-initiative' value='{{ initiative }}' readonly=true></input>
-        <p></p>
-        <label>Attributes</label>
-        <p></p>
-        {% for value0 in ability %}
-            <label for="character-attributes-value0">-{{ value0.ability_score.name }}:</label>
-            <input class='ficha' id='character-attributes-value0' value='{{ value0.value }} ({{ value0.bonus }})' readonly=true></input>
+    <div class="row">
+        <div class='col-4' id='ficha'>
+            <label class='label-description' for="character-name">Character Name: </label>
+            <input class='description-value' id='character-name' value='{{ character_name }}' readonly=true size="{{ character_name|length }}"></input>
             <p></p>
-        {%endfor%}
-        <p></p>
-        <label>Proficiencies:</label>
-        <p></p>
-        {% for value1 in proficiencies %}
-            <input class='ficha' id='character-proficiencies-value1' value='{{ value1.name }}' readonly=true></input>
+        </div>
+        <div class='col-4' id='ficha'>
+            <label class='label-description' for="character-race">Race: </label>
+            <input class='description-value' id='character-race' value='{{ race.name }}' readonly=true size="{{ race.name|length }}"></input>
+        </div>
+        <div class='col-4' id='ficha'>
+            <label class='label-description' for="character-subrace">Subrace:</label>
+            <input class='description-value' id='character-subrace' value='{{ subrace.name }}' readonly=true size="{{ subrace.name|length }}"></input>
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-4' id='ficha'>
+            <label class='label-description' for="character-alignment">Alignment:</label>
+            <input class='description-value' id='character-alignment' value='{{ alignment }}' readonly=true size='{{ alignment|length }}'></input>
             <p></p>
-        {%endfor%}
-        <p></p>
-        <label>Languages:</label>
-        <p></p>
-        {% for value2 in languages %}
-            <input class='ficha' id='character-languages-value2' value='{{ value2.name }}' readonly=true></input>
+            <label class='label-description' for="character-speed">Speed:</label>
+            <input class='description-value' id='character-speed' value='{{ speed }}' readonly=true size='5'></input>
             <p></p>
-        {%endfor%}
-        <p></p>
-        <label>Features:</label>
-        <p></p>
-        {% for value5 in stats.features %}
-            <input class='ficha' id='character-features-value1' value='{{ value5.name }}' readonly=true></input>
+            <label class='label-description' for="character-size">Size:</label>
+            <input class='description-value' id='character-size' value='{{ size }}' readonly=true size='5'></input>
             <p></p>
-        {%endfor%}
-        <p></p>
-        <label>Equipments</label>
-        <p></p>
-        {% for value5 in equipment %}
-            <label for="character-equipment-value0">-{{ value5.equipment.name }}</label>
-            <input class='ficha' id='character-equipments-value0' value='(x{{ value5.quantity }})' readonly=true></input>
+            <label class='label-description' for="character-hitdie">Hit Die:</label>
+            <input class='description-value' id='character-hitdie' value='D{{ hit_die }}' readonly=true size='5'></input>
             <p></p>
-        {%endfor%}
-        <p></p>
-        <!--<h2>Attributes</h2>
-        <ul>
-        {% for value0 in ability %}
-            <li>{{ value0.ability_score.name }}: {{ value0.value }} ({{ value0.bonus }})</li>
-        {%endfor%}
-        </ul>
-
-        <h2>Proficiencies</h2>
-        <ul>
-        {% for value1 in proficiencies %}
-            <li>{{ value1.name }}</li>
-        {%endfor%}
-        </ul>
-
-        <h2>Languages</h2>
-        <ul>
-        {% for value2 in languages %}
-            <li>{{ value2.name }}</li>
-        {%endfor%}
-        </ul>-->
-
-        <h2>Skills</h2>
-        <ul>
-        {% for value3 in skills %}
-            <li>{{ value3.skill.name }}: {{ value3.bonus }}</li>
-        {%endfor%}
-        </ul>
-
-        <h2>Stats</h2>
-        <p>Proficience Bonus: {{ stats.prof_bonus }}</p>
-
-        <h3>Class Specificts</h3>
-        <ul>
-            {% for value4 in stats.class_specific.items %}
-                <li>{{ value4.0 }}: {{ value4.1 }}</li>
-            {% endfor %}
-        </ul>
-
-        <!--<h3>Features</h3>
-        <ul>
+            <label class='label-description' for="character-hitpoints">Hit Points:</label>
+            <input class='description-value' id='character-hitpoints' value='{{ hit_points }}' readonly=true size='5'></input>
+            <p></p>
+            <label class='label-description' for="character-armorclass">Armor Class:</label>
+            <input class='description-value' id='character-armorclass' value='{{ armor_class }}' readonly=true size='5'></input>
+            <p></p>
+            <label class='label-description' for="character-initiative">Initiative:</label>
+            <input class='description-value' id='character-initiative' value='{{ initiative }}' readonly=true size='5'></input>
+            <p></p>
+            
+            <label class='label-description'>Features:</label>
+            <p></p>
             {% for value5 in stats.features %}
-                <li>{{ value5.name }}</li>
-            {% endfor %}
-        </ul>
-
-        <h2>Equipments</h2>
-        <ul>
+                <input class='description-value' id='character-features-value1' value='{{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
+                <p></p>
+            {%endfor%}
+            <p></p>
+            <label class='label-description'>Equipments</label>
+            <p></p>
             {% for value5 in equipment %}
-                <li>{{ value5.equipment.name }}, quantity: {{ value5.quantity }}</li>
-            {% endfor %}
-        </ul>-->
+                <label class='label-description' for="character-equipment-value0">-{{ value5.equipment.name }}</label>
+                <input class='description-value' id='character-equipments-value0' value='(x{{ value5.quantity }})' readonly=true size='5'></input>
+                <p></p>
+            {%endfor%}
+            <p></p>
+            <!--<h2>Attributes</h2>
+            <ul>
+            {% for value0 in ability %}
+                <li>{{ value0.ability_score.name }}: {{ value0.value }} ({{ value0.bonus }})</li>
+            {%endfor%}
+            </ul>
+    
+            <h2>Proficiencies</h2>
+            <ul>
+            {% for value1 in proficiencies %}
+                <li>{{ value1.name }}</li>
+            {%endfor%}
+            </ul>
+    
+            <h2>Languages</h2>
+            <ul>
+            {% for value2 in languages %}
+                <li>{{ value2.name }}</li>
+            {%endfor%}
+            </ul>-->
+    
+            <h2>Skills</h2>
+            <ul>
+            {% for value3 in skills %}
+                <li>{{ value3.skill.name }}: {{ value3.bonus }}</li>
+            {%endfor%}
+            </ul>
+    
+            <h2>Stats</h2>
+            <p>Proficience Bonus: {{ stats.prof_bonus }}</p>
+    
+            <h3>Class Specificts</h3>
+            <ul>
+                {% for value4 in stats.class_specific.items %}
+                    <li>{{ value4.0 }}: {{ value4.1 }}</li>
+                {% endfor %}
+            </ul>
+    
+            <!--<h3>Features</h3>
+            <ul>
+                {% for value5 in stats.features %}
+                    <li>{{ value5.name }}</li>
+                {% endfor %}
+            </ul>
+    
+            <h2>Equipments</h2>
+            <ul>
+                {% for value5 in equipment %}
+                    <li>{{ value5.equipment.name }}, quantity: {{ value5.quantity }}</li>
+                {% endfor %}
+            </ul>-->
+        </div>
+        <div class='col-4' id=ficha>
+            <label class='label-description'>Attributes</label>
+            <p></p>
+            {% for value0 in ability %}
+                <label class='label-description' for="character-attributes-value0">-{{ value0.ability_score.name }}:</label>
+                <input class='description-value' id='character-attributes-value0' value='{{ value0.value }} ({{ value0.bonus }})' readonly=true size='5'></input>
+                <p></p>
+            {%endfor%}
+            <p></p>
+        </div>
+        <div class='col-4' id=ficha>
+            <label class='label-description'>Proficiencies:</label>
+            <p></p>
+            {% for value1 in proficiencies %}
+                <input class='description-value' id='character-proficiencies-value1' value='{{ value1.name }}' readonly=true size='{{ value1.name|length }}'></input>
+                <p></p>
+            {%endfor%}
+            <p></p>
+            <label class='label-description'>Languages:</label>
+            <p></p>
+            {% for value2 in languages %}
+                <input class='description-value' id='character-languages-value2' value='{{ value2.name }}' readonly=true size='{{ value2.name|length }}'></input>
+                <p></p>
+            {%endfor%}
+            <p></p>
+        </div>
     </div>
 
 {% endblock %}
