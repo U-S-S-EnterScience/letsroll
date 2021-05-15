@@ -15,6 +15,8 @@ import requests
 import json
 
 
+
+
 def call(url):
     r = requests.get(url)
     return json.loads(r.text)
@@ -103,10 +105,12 @@ def cria_Ficha(request):
     return render(request, 'cria_ficha.html',options)
 
 
+# Home
 def home(request):
     return render(request, 'home.html')
 
 
+# Password Reset
 def password_reset_request(request):
     if request.method == "POST":
         password_reset_form = PasswordResetForm(request.POST)

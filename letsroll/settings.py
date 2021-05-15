@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os 
+import sys
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ghu1&oq57a32a%qqn3lx!sv7df(!wt5q%r4x*+p#5o21l=ty4o'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
 
@@ -96,7 +99,7 @@ WSGI_APPLICATION = 'letsroll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -145,38 +148,44 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# django-allauth
+# Django-allauth
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1
+
+
+# Configurações Django Allauth
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True                          # Por padrão o django pede pra colocar a senha pra se cadastrar 2 vezes
+ACCOUNT_USERNAME_REQUIRED = True                                    # É necessario username
+ACCOUNT_AUTHENTICATION_METHOD = "email"                             # Método de autenticação = email
+ACCOUNT_EMAIL_REQUIRED = True                                       # Por padrão é opcional
+ACCOUNT_UNIQUE_EMAIL = True                                         # O Email tem que ser unico (um para daca usuário)
+ACCOUNT_SESSION_REMEMBER = False                                    # Não se lembra do último usuário logado
 LOGIN_REDIRECT_URL = "/"
-ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"             # URL que sera encaminhada após clicar no link de autenticação no email
+ACCOUNT_LOGOUT_ON_GET = True
+
+
+SITE_ID = 1
+
+
 
 
 # Email
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"    # Quando um usuario se cadastrar, vou receber um email no console
-
-"""
+'''
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend" 
-DEFAULT_FROM_EMAIL = "no-reply@meusite.com"
+DEFAULT_FROM_EMAIL = "suporte@letsroll.com.br"
 SERVER_MAIL = DEFAULT_FROM_EMAIL
 ANYMAIL = {
-    "MAILGUN_API_KEY": "ea5685f58293b1d9f2cfe15729930fe6-71b35d7e-19b2835b",
-    "MAILGUN_SENDER_DOMAIN": "sandboxd8c156a8e13b4f788aff02304a860d6b.mailgun.org",
+    "MAILGUN_API_KEY": config('MAILGUNKEY'),
+    "MAILGUN_SENDER_DOMAIN": config('MAILGUNDOMAIN'),
 }
-"""
-
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True                          # por padrão o django pede pra colocar a senha pra se cadastrar 2 vezes
-ACCOUNT_USERNAME_REQUIRED = True                                    # Não é necessario username
-ACCOUNT_AUTHENTICATION_METHOD = "email"                             # metodo de autenticação = email
-ACCOUNT_EMAIL_REQUIRED = True                                       # Por padrão é opcional
-ACCOUNT_UNIQUE_EMAIL = True                                         # o Email tem que ser unico
-
+'''
 
 # django-crispy-forms
 
