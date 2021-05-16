@@ -7,16 +7,15 @@
         {% csrf_token %}
         <h2>Build your Character</h2>
         <p></p>
-        <div id="div_name">
-             <input type="text" id="name" name="name">
+        <div id="div_radio" >
+            {% for item in value %}
+                <input type="radio" id="{{ name }}" name="{{ name }}" value= "{{ item.name }}">
+                <label for="{{ name }}">{{ item.name }}</label>
+                <br>
+            {%endfor%}
         </div>
         <p></p>
         <input type="submit" id="bt_next">
     </form>
-
-    <script>
-
-    </script>
-
 
 {% endblock %}
