@@ -156,22 +156,22 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-
 # Configurações Django Allauth
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True                          # Por padrão o django pede pra colocar a senha pra se cadastrar 2 vezes
-ACCOUNT_USERNAME_REQUIRED = True                                    # É necessario username
-ACCOUNT_AUTHENTICATION_METHOD = "email"                             # Método de autenticação = email
-ACCOUNT_EMAIL_REQUIRED = True                                       # Por padrão é opcional
-ACCOUNT_UNIQUE_EMAIL = True                                         # O Email tem que ser unico (um para daca usuário)
-ACCOUNT_SESSION_REMEMBER = False                                    # Não se lembra do último usuário logado
-LOGIN_REDIRECT_URL = "/"
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"             # URL que sera encaminhada após clicar no link de autenticação no email
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True                              # Por padrão o django pede pra colocar a senha pra se cadastrar 2 vezes
+ACCOUNT_USERNAME_REQUIRED = True                                        # É necessario username
+ACCOUNT_AUTHENTICATION_METHOD = "email"                                 # Método de autenticação = email
+ACCOUNT_EMAIL_REQUIRED = True                                           # Por padrão é opcional
+ACCOUNT_UNIQUE_EMAIL = True                                             # O Email tem que ser unico (um para daca usuário)
+ACCOUNT_SESSION_REMEMBER = False                                        # Não se lembra do último usuário logado
+LOGIN_REDIRECT_URL = "/"                                                
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/accounts/login"   # URL que sera encaminhada após clicar no link de autenticação no email
 ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION="mandatory"
+SOCIALACCOUNT_EMAIL_VERIFICATION=ACCOUNT_EMAIL_VERIFICATION
+SOCIALACCOUNT_EMAIL_REQUIRED=ACCOUNT_EMAIL_REQUIRED
 
 
 SITE_ID = 1
-
-
 
 
 # Email
@@ -185,7 +185,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": config('MAILGUNKEY'),
     "MAILGUN_SENDER_DOMAIN": config('MAILGUNDOMAIN'),
 }
-'''
+''' 
 
 # django-crispy-forms
 
