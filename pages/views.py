@@ -68,7 +68,7 @@ character = {
             "bonus": 0
         }
     ],
-    "age": 0,
+    "prof_bonus": 0,
     "alignment": "",
     "size": "",
     "subrace": "",
@@ -166,7 +166,7 @@ def ficha(request):
 
 
 def cria_Ficha(request):
-    global jason, jason_class, sub_jason, renderize, lang, trait
+    global js_race, js_class, js_sub, js_level, renderize, lang, trait
 
     if request.method == "POST":
         req = request.POST
@@ -192,105 +192,105 @@ def cria_Ficha(request):
             for item in races:
                 if item["name"] == req["races"]:
                     api_url = url + item["url"]
-            jason = call(api_url)
+            js_race = call(api_url)
 
-            character['speed'] = jason['speed']
+            character["speed"] = js_race["speed"]
 
-            character['size'] = jason['size']
+            character["size"] = js_race["size"]
 
-            character['race'] = jason['name']
+            character["race"] = js_race["name"]
 
-            for item in jason['ability_bonuses']:
-                for num in range(len(character['ability'])):
-                    if item['ability_score']['url'] == character['ability'][num]['ability_score']['url']:
-                        character['ability'][num]['value'] = item['bonus']
+            for item in js_race["ability_bonuses"]:
+                for num in range(len(character["ability"])):
+                    if item["ability_score"]["url"] == character["ability"][num]["ability_score"]["url"]:
+                        character["ability"][num]["value"] = item["bonus"]
 
-            temp = jason['starting_proficiencies']
-            if temp != []:
+            if js_race["starting_proficiencies"] != []:
+                temp = js_race["starting_proficiencies"]
                 for item in temp:
-                    if item['index'][0:5] == 'skill':
-                        append = {'name': item['name'][7:], 'url': item['url']}
-                        if append not in character['skills']:
-                            character['skills'].append(append)
+                    if item["index"][0:5] == "skill":
+                        append = {"name": item["name"][7:], "url": item["url"]}
+                        if append not in character["skills"]:
+                            character["skills"].append(append)
 
                     else:
-                        append = {'name': item['name'], 'url': item['url']}
-                        if append not in character['proficiencies']:
-                            character['proficiencies'].append(append)
+                        append = {"name": item["name"], "url": item["url"]}
+                        if append not in character["proficiencies"]:
+                            character["proficiencies"].append(append)
 
-            temp = jason['languages']
-            if temp != []:
+            if js_race["languages"] != []:
+                temp = js_race["languages"]
                 for item in temp:
-                    append = {'name': item['name'], 'url': item['url']}
-                    if append not in character['languages']:
-                        character['languages'].append(append)
+                    append = {"name": item["name"], "url": item["url"]}
+                    if append not in character["languages"]:
+                        character["languages"].append(append)
 
-            for item in jason['traits']:
-                append = {'name': item['name'], 'url': item['url']}
-                if append not in character['traits']:
-                    character['traits'].append(append)
+            for item in js_race["traits"]:
+                append = {"name": item["name"], "url": item["url"]}
+                if append not in character["traits"]:
+                    character["traits"].append(append)
 
-            if "starting_proficiency_options" in jason:
+            if "starting_proficiency_options" in js_race:
                 renderize = "options"
-                value = jason["starting_proficiency_options"]["from"]
+                value = js_race["starting_proficiency_options"]["from"]
 
-            if "language_options" in jason:
+            if "language_options" in js_race:
                 renderize = "options"
-                value = jason["language_options"]["from"]
+                value = js_race["language_options"]["from"]
 
             if renderize == "options":
                 renderize = ""
                 return render(request, "raca.html", {"name": "options", "value": value})
 
         if req.__contains__("options"):
-            if "starting_proficiency_options" in jason:
-                temp = jason["starting_proficiency_options"]["from"]
+            if "starting_proficiency_options" in js_race:
+                temp = js_race["starting_proficiency_options"]["from"]
                 for item in temp:
                     if item["name"] == req["race"]:
                         append = {"name": item["name"], "url": item["url"]}
                         if append not in character["proficiencies"]:
                             character["proficiencies"].append(append)
 
-            if "language_options" in jason:
-                temp = jason["language_options"]["from"]
+            if "language_options" in js_race:
+                temp = js_race["language_options"]["from"]
                 for item in temp:
                     if item["name"] == req["options"]:
                         append = {"name": item["name"], "url": item["url"]}
                         if append not in character["languages"]:
                             character["languages"].append(append)
 
-        if jason["subraces"] != [] and character["subrace"] == "":
-            character["subrace"] = jason["subraces"][0]["name"]
-            api_url = url + jason["subraces"][0]["url"]
-            sub_jason = call(api_url)
+        if js_race["subraces"] != [] and character["subrace"] == "":
+            character["subrace"] = js_race["subraces"][0]["name"]
+            api_url = url + js_race["subraces"][0]["url"]
+            js_sub = call(api_url)
 
-        if character["subrace"] != "":
-            for item in sub_jason['ability_bonuses']:
-                for num in range(len(character['ability'])):
-                    if item['ability_score']['url'] == character['ability'][num]['ability_score']['url']:
-                        character['ability'][num]['value'] = item['bonus']
+        if character["subrace"] != "" and js_sub != {}:
+            for item in js_sub["ability_bonuses"]:
+                for num in range(len(character["ability"])):
+                    if item["ability_score"]["url"] == character["ability"][num]["ability_score"]["url"]:
+                        character["ability"][num]["value"] = item["bonus"]
 
-            temp = sub_jason['starting_proficiencies']
-            if temp != []:
+            if js_sub["starting_proficiencies"] != []:
+                temp = js_sub["starting_proficiencies"]
                 for item in temp:
-                    if item['index'][0:5] == 'skill':
-                        append = {'name': item['name'][7:], 'url': item['url']}
-                        if append not in character['skills']:
-                            character['skills'].append(append)
+                    if item["index"][0:5] == "skill":
+                        append = {"name": item["name"][7:], "url": item["url"]}
+                        if append not in character["skills"]:
+                            character["skills"].append(append)
 
                     else:
-                        append = {'name': item['name'], 'url': item['url']}
-                        if append not in character['proficiencies']:
-                            character['proficiencies'].append(append)
+                        append = {"name": item["name"], "url": item["url"]}
+                        if append not in character["proficiencies"]:
+                            character["proficiencies"].append(append)
 
-            for item in sub_jason["racial_traits"]:
-                append = {'name': item['name'], 'url': item['url']}
-                if append not in character['traits']:
-                    character['traits'].append(append)
+            for item in js_sub["racial_traits"]:
+                append = {"name": item["name"], "url": item["url"]}
+                if append not in character["traits"]:
+                    character["traits"].append(append)
 
-            if "language_options" in sub_jason:
-                lang = sub_jason["language_options"]["from"]
-                sub_jason.pop("language_options")
+            if "language_options" in js_sub:
+                lang = js_sub["language_options"]["from"]
+                js_sub.pop("language_options")
                 return render(request, "raca.html", {"name": "language", "value": lang})
 
             if req.__contains__("language"):
@@ -300,9 +300,9 @@ def cria_Ficha(request):
                         if append not in character["languages"]:
                             character["languages"].append(append)
 
-            if "racial_trait_options" in sub_jason:
-                trait = sub_jason["racial_trait_options"]["from"]
-                sub_jason.pop("racial_trait_options")
+            if "racial_trait_options" in js_sub:
+                trait = js_sub["racial_trait_options"]["from"]
+                js_sub.pop("racial_trait_options")
                 return render(request, "raca.html", {"name": "trait", "value": trait})
 
             if req.__contains__("trait"):
@@ -312,24 +312,71 @@ def cria_Ficha(request):
                         if append not in character["traits"]:
                             character["traits"].append(append)
 
-        if not req.__contains__("class"):
+            js_sub = {}
+
+        if character["class"] == "":
+            character["class"] = "temp"
             return render(request, "raca.html", {"name": "class", "value": classes})
 
         if req.__contains__("class"):
-            if character["class"] == "":
-                for item in classes:
-                    if item["name"] == req["class"]:
-                        api_url = url + item["url"]
-            jason_class = call(api_url)
+            renderize = "skills"
+            for item in classes:
+                if item["name"] == req["class"]:
+                    api_url = url + item["url"]
 
-        character["class"] = jason_class["name"]
+            js_class = call(api_url)
 
-        character["hit_die"] = jason_class["hit_die"]
+            js_level = call(url + js_class["class_levels"])
 
-        if not req.__contains__("skills"):
-            value = jason_class["proficiency_choices"][0]["from"]
-            choose = jason_class["proficiency_choices"][0]["choose"]
+            character["class"] = js_class["name"]
+
+            character["prof_bonus"] = 2
+
+            character["level"] = 1
+
+            character["hit_die"] = js_class["hit_die"]
+
+            for item in js_class["proficiencies"]:
+                append = {"name": item["name"], "url": item["url"]}
+                if append not in character["proficiencies"]:
+                    character["proficiencies"].append(append)
+
+            for item in js_class["saving_throws"]:
+                for item1 in character["ability"]:
+                    if item["url"] == item1["ability_score"]["url"]:
+                        append = {"name": item1["ability_score"]["name"], "url": item1["ability_score"]["url"]}
+                        character["saving_throws"].append(append)
+
+            if "starting_equipment" != []:
+                for item in js_class["starting_equipment"]:
+                    append = {"equipment": {"name": item["equipment"]["name"], "url": item["equipment"]["url"]},
+                              "quantity": item["quantity"]}
+                    character["equipment"].append(append)
+
+        if renderize == "skills":
+            renderize = ""
+            choose = js_class["proficiency_choices"][0]["choose"]
+            value = []
+
+            for item in js_class["proficiency_choices"][0]["from"]:
+                if character["skills"] != []:
+                    for item1 in character["skills"]:
+                        if item["url"] != item1["url"]:
+                            append = {"index": item["index"], "name": item["name"][7:], "url": item["url"]}
+                            value.append(append)
+                else:
+                    append = {"index": item["index"], "name": item["name"][7:], "url": item["url"]}
+                    value.append(append)
+
             return render(request, "classe.html", {"name": "skills", "value": value, "choose": choose})
+
+        if len(req) > 2:
+            for item in req:
+                for item1 in js_class["proficiency_choices"][0]["from"]:
+                    if item != "csrfmiddlewaretoken":
+                        if item == item1["index"]:
+                            append = {"name": item1["name"][7:], "url": item1["url"]}
+                            character["skills"].append(append)
 
         print(json.dumps(character, indent=2))
     return render(request, "cria_ficha.html", {"name": "Name"})
