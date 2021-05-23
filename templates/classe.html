@@ -5,9 +5,10 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <h2>Choose {{ choose }} {{ name }} for your character</h2>
+        <h1>Build your Character</h1>
         <p></p>
         <div id="div_radio" >
+             <h3>Choose {{ choose }} {{ name }} for your character</h3>
             {% for item in value %}
                 <input type="checkbox" id="{{ name }}" name="{{ item.index }}" value= "{{ item.name }}">
                 <label for="{{ name }}">{{ item.name }}</label>

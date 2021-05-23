@@ -5,9 +5,10 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <h2>Build your Character</h2>
+        <h1>Build your Character</h1>
         <p></p>
         <div id="div_radio" >
+            <h3>{{ label }}</h3>
             {% for item in value %}
                 <input type="radio" id="{{ name }}" name="{{ name }}" value= "{{ item.name }}">
                 <label for="{{ name }}">{{ item.name }}</label>
