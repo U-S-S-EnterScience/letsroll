@@ -10,8 +10,8 @@
         <div id="div_radio" >
             <h3>{{ label }}</h3>
             {% for item in value %}
-                <input type="radio" id="{{ name }}" name="{{ name }}" value= "{{ item }}">
-                <label for="{{ name }}">{{ item }}</label>
+                <input type="radio" id="{{ name }}" name="{{ name }}" value= "{{ item.index }}">
+                <label for="{{ name }}">Equipment: {{ item.name }} Quantity: {{ item.quantity }}</label>
                 <br>
             {%endfor%}
         </div>
