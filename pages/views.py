@@ -185,7 +185,7 @@ def cria_Ficha(request):
         if renderize == "race":
             renderize = "class"
             label = "Choose a race for your character"
-            return render(request, "raca.html", {"name": "races", "label": label, "value": races})
+            return render(request, "radio.html", {"name": "races", "label": label, "value": races})
 
         if req.__contains__("races"):
             temp = [{"name": "Dwarf", "url": "/api/races/dwarf"},
@@ -246,7 +246,7 @@ def cria_Ficha(request):
 
             if renderize == "options":
                 renderize = "class"
-                return render(request, "raca.html", {"name": "options", "label": label, "value": value})
+                return render(request, "radio.html", {"name": "options", "label": label, "value": value})
 
         if req.__contains__("options"):
             if "starting_proficiency_options" in js_race:
@@ -301,7 +301,7 @@ def cria_Ficha(request):
                     value.append(item["name"])
                 js_sub.pop("language_options")
                 label = "Choose an optional language for your character"
-                return render(request, "raca.html", {"name": "language", "label": label, "value": value})
+                return render(request, "radio.html", {"name": "language", "label": label, "value": value})
 
             if req.__contains__("language"):
                 for item in lang:
@@ -317,7 +317,7 @@ def cria_Ficha(request):
                     value.append(item["name"])
                 js_sub.pop("racial_trait_options")
                 label = "Choose an optional trait for your character"
-                return render(request, "raca.html", {"name": "trait", "label": label, "value": value})
+                return render(request, "radio.html", {"name": "trait", "label": label, "value": value})
 
             if req.__contains__("trait"):
                 for item in trait:
@@ -329,7 +329,7 @@ def cria_Ficha(request):
         if renderize == "class":
             renderize = "method_generate"
             label = "Choose a class for your character"
-            return render(request, "raca.html", {"name": "class", "label": label, "value": classes})
+            return render(request, "radio.html", {"name": "class", "label": label, "value": classes})
 
         if req.__contains__("class"):
             temp = [{"name": "Cleric", "url": "/api/classes/cleric"},
@@ -368,7 +368,7 @@ def cria_Ficha(request):
             renderize = "abilities_select"
             label = "Choose the method to generate the abilities for your character"
             value = ["Randomize", "Standard"]
-            return render(request, "raca.html", {"name": "method_generate", "label": label, "value": value})
+            return render(request, "radio.html", {"name": "method_generate", "label": label, "value": value})
 
         if req.__contains__("method_generate"):
             abilities_name = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
@@ -388,7 +388,7 @@ def cria_Ficha(request):
             renderize = "choosed_ability"
             ability_select = abilities_name[0]
             label = "Choose the value for " + ability_select
-            return render(request, "raca.html", {"name": "abilities", "label": label, "value": ability})
+            return render(request, "radio.html", {"name": "abilities", "label": label, "value": ability})
 
         if renderize == "choosed_ability":
             for num in range(len(character["ability"])):
@@ -402,7 +402,7 @@ def cria_Ficha(request):
             label = "Choose the value for " + ability_select
 
             if len(ability) > 1:
-                return render(request, "raca.html", {"name": "abilities", "label": label, "value": ability})
+                return render(request, "radio.html", {"name": "abilities", "label": label, "value": ability})
 
             else:
                 renderize = "choose_skills"
@@ -431,7 +431,7 @@ def cria_Ficha(request):
 
                 else:
                     value.append({"name": item["name"][7:], "index": item["index"]})
-            return render(request, "classe.html", {"name": "skills", "value": value, "choose": choose})
+            return render(request, "checkbox.html", {"name": "skills", "value": value, "choose": choose})
 
         elif renderize == "add_skills":
             if js_level[0]["feature_choices"] != []:
@@ -456,13 +456,13 @@ def cria_Ficha(request):
                     label = "Choose " + str(temp["choice"]["choose"]) + " " + str(temp["name"][7:])
                     for item in temp["choice"]["from"]:
                         value.append(item["name"])
-                    return render(request, "raca.html", {"name": "Fighting Style", "label": label,
+                    return render(request, "radio.html", {"name": "style", "label": label,
                                                          "value": value})
 
                 elif renderize == "add_features":
                     renderize = "choose_equipment"
                     for item in temp["choice"]["from"]:
-                        if req["feature_choices"] == item["name"]:
+                        if req["style"] == item["name"]:
                             character["features"].append({"name": item["name"], "url": item["url"]})
 
             if character["class"] == "Rogue":
@@ -473,7 +473,7 @@ def cria_Ficha(request):
                         for item1 in character["skills"]:
                             if item["name"][11:] == item1["name"]:
                                 value.append({"name": item["name"][11:], "index": item["index"]})
-                    return render(request, "classe.html", {"name": "Rogue Expertise", "value": value,
+                    return render(request, "checkbox.html", {"name": "expertise", "value": value,
                                                            "choose": choose})
 
                 elif renderize == "add_features":
@@ -544,7 +544,7 @@ def cria_Ficha(request):
                                                    "url": item["1"]["equipment"]["url"]}}
                             value.append(append)
 
-                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                    return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                               "value": value})
 
                 elif renderize == "option_equipment":
@@ -559,7 +559,7 @@ def cria_Ficha(request):
                                       "url": item["url"]}
                             value.append(append)
 
-                        return render(request, "equipment.html", {"name": "equipment", "label": label,
+                        return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                                   "value": value})
 
                     else:
@@ -640,7 +640,7 @@ def cria_Ficha(request):
                     if renderize == "option_equipment":
                         option = call(url + "/api/equipment-categories/martial-weapons")
 
-                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                    return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                               "value": value})
 
                 elif renderize == "option_equipment":
@@ -663,7 +663,7 @@ def cria_Ficha(request):
                         value.append(append)
                         value1.append(append)
 
-                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                    return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                               "value": value})
 
                 elif renderize == "add_equipment":
@@ -700,7 +700,7 @@ def cria_Ficha(request):
                                                    "url": item["1"]["equipment"]["url"]}}
                             value.append(append)
 
-                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                    return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                               "value": value})
 
                 elif renderize == "add_equipment":
@@ -743,7 +743,7 @@ def cria_Ficha(request):
                                       "index": item["equipment_option"]["from"]["equipment_category"]["url"]}
                             value.append(append)
 
-                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                    return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                               "value": value})
 
                 elif renderize == "option_equipment":
@@ -758,7 +758,7 @@ def cria_Ficha(request):
                                       "url": item["url"]}
                             value.append(append)
 
-                        return render(request, "equipment.html", {"name": "equipment", "label": label,
+                        return render(request, "radio_2.html", {"name": "equipment", "label": label,
                                                                   "value": value})
 
                     else:
@@ -809,7 +809,7 @@ def cria_Ficha(request):
             if renderize == "cantrips":
                 renderize = "choosed_cantrips"
                 choose = character["spells"]["spellcasting"]["cantrips_known"]
-                return render(request, "classe.html", {"name": "cantrips", "value": cantrips, "choose": choose})
+                return render(request, "checkbox.html", {"name": "cantrips", "value": cantrips, "choose": choose})
 
             if renderize == "choosed_cantrips":
                 renderize = "level_1"
@@ -823,7 +823,7 @@ def cria_Ficha(request):
             if renderize == "level_1":
                 renderize = "choosed_level_1"
                 choose = character["spells"]["spellcasting"]["spells_known"]
-                return render(request, "classe.html", {"name": "spell level 1", "value": level_1, "choose": choose})
+                return render(request, "checkbox.html", {"name": "spell level 1", "value": level_1, "choose": choose})
 
             if renderize == "choosed_level_1":
                 for item in req:
@@ -836,7 +836,7 @@ def cria_Ficha(request):
         else:
             character.pop("spells")
 
-    return render(request, "cria_ficha.html", {"name": "Name"})
+    return render(request, "text_name.html", {"name": "Name"})
 
 
 def home(request):
