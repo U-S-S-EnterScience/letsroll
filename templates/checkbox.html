@@ -5,18 +5,35 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <h1>Build your Character</h1>
+        <h1 class='label-description'>Build your Character</h1>
         <p></p>
         <div id="div_radio" >
-             <h3>Choose {{ choose }} {{ name }} for your character</h3>
+            <h3 class='label-description'>Choose {{ choose }} {{ name }} for your character</h3>
+            <input hidden='true' id='choose' value="{{ choose }}">
             {% for item in value %}
-                <input type="checkbox" id="{{ name }}" name="{{ item.index }}" value= "{{ item.name }}">
-                <label for="{{ name }}">{{ item.name }}</label>
+                <input type="checkbox" id="{{ item.index }}" name="{{ item.index }}" value= "{{ item.name }}" class='checkboxes' onchange="change()">
+                <label class='label-description' for="{{ item.index }}">{{ item.name }}</label>
                 <br>
             {%endfor%}
         </div>
         <p></p>
-        <input type="submit" id="bt_next">
+        <input type="submit" id="bt_next" disabled='true' value="Next">
     </form>
 
+    <script>
+        function change(){
+            var checkboxes = document.getElementsByClassName('checkboxes')
+            var cont = 0
+            for (key = 0; key < checkboxes.length; key++){
+                if(document.getElementById(checkboxes[key].name).checked) {
+                    cont += 1
+                }
+            }
+            if (cont == document.getElementById('choose').value){
+                document.getElementById('bt_next').disabled = false
+            }
+            else document.getElementById('bt_next').disabled = true
+            
+        }
+    </script>
 {% endblock %}

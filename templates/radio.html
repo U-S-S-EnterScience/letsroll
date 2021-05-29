@@ -5,18 +5,26 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <h1>Build your Character</h1>
+        <h1 class='label-description'>Build your Character</h1>
         <p></p>
         <div id="div_radio" >
-            <h3>{{ label }}</h3>
+            <h3 class='label-description'>{{ label }}</h3>
             {% for item in value %}
-                <input type="radio" id="{{ name }}" name="{{ name }}" value= "{{ item }}">
-                <label for="{{ name }}">{{ item }}</label>
+                <input type="radio" id="{{ item }}" name="{{ name }}" value= "{{ item }}" class='radios' onchange="change()">
+                <label  class='label-description' for="{{ item }}">{{ item }}</label>
                 <br>
             {%endfor%}
         </div>
         <p></p>
-        <input type="submit" id="bt_next">
+        <input type="submit" id="bt_next" disabled='true' value="Next">
     </form>
 
+    <script>
+        function change(){
+            var radios = document.getElementsByClassName('radios')
+            for (key = 0; key < radios.length; key++){
+                if(document.getElementById(radios[key].id).checked) document.getElementById('bt_next').disabled = false
+            }
+        }
+    </script>
 {% endblock %}

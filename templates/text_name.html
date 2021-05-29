@@ -5,19 +5,20 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        <h2>Build your Character</h2>
+        <h2 class='label-description' >Build your Character</h2>
         <p></p>
         <div id="div_name">
-            <h3>Choose a name for your character</h3>
-             <input type="text" id="name" name="name">
+            <h3 class='label-description' >Choose a name for your character</h3>
+            <input type="text" id="name" name="name" onkeyup="change()">
         </div>
         <p></p>
-        <input type="submit" id="bt_next">
+        <input type="submit" id="bt_next" disabled='true' value="Next">
     </form>
 
     <script>
-
+        function change(){
+            if (document.getElementById('name').value == '') document.getElementById('bt_next').disabled = true
+            else document.getElementById('bt_next').disabled = false
+        }
     </script>
-
-
 {% endblock %}

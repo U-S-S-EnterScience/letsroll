@@ -10,14 +10,79 @@
     * {
         box-sizing: border-box;
     }
+    
     body {
-         background-image: url("https://i.pinimg.com/originals/ba/bf/eb/babfebb6a1985cdd8d3f9a59d860b667.jpg");
+        background-image: url("https://i.pinimg.com/originals/ba/bf/eb/babfebb6a1985cdd8d3f9a59d860b667.jpg");
+        background-image: url("https://i.pinimg.com/originals/ba/bf/eb/babfebb6a1985cdd8d3f9a59d860b667.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-attachment: fixed;
         background-size: 100% 100%;
     }
+
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    [class*="col-"] {
+        float: left;
+        padding: 15px;
+        /*border: 1px solid red;*/
+    }
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    
+    #ficha {
+        background-image: url(https://cdn.discordapp.com/attachments/247457383486324737/839573346361278515/scroll_3.png);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        /*border-color: rgb(82, 6, 6);
+        border-style: groove;*/
+        width: 100%;
+        padding: 8px;
+    }
+    .description-value {
+        -webkit-text-stroke: 0.7px black; /* width and color */
+        color: black;
+        background-color: transparent;
+        font-family: "Papyrus",fantasy;
+        font-weight: bold;
+        font-size: large;
+        border-color: transparent;
+        border-style:dashed;
+        max-width: fit-content;
+    }
+    .description-value:hover/*, input:focus*/{
+        -webkit-text-stroke: 0.7px black; /* width and color */
+        color: red;
+        background-color: transparent;
+        font-family: "Papyrus",fantasy;
+        font-weight: bold;
+        /*border-color:red;*/
+        border-style:dashed;
+        outline: none;
+    }
+    .label-description {
+        -webkit-text-stroke: 0.7px black; /* width and color */
+        color: white;
+        font-family: "Papyrus",fantasy;
+        font-size: x-large;
+        font-weight: bold;
+    }
 </style>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
