@@ -327,7 +327,6 @@ def cria_Ficha(request):
                             character["traits"].append(append)
 
         if renderize == "class":
-            # renderize = "choose_equipment"
             renderize = "method_generate"
             label = "Choose a class for your character"
             return render(request, "raca.html", {"name": "class", "label": label, "value": classes})
@@ -584,103 +583,97 @@ def cria_Ficha(request):
                                           "url": item["url"]}
                                 character["equipment"].append(append)
 
-        # elif character["class"] == "Fighter":
-        #     while len(js_class["starting_equipment_options"]) > 0:
-        #         temp = js_class["starting_equipment_options"][0]
-        #         if renderize == "choose_equipment":
-        #             label = "Choose " + str(temp["choose"]) + " equipment from the list bellow: "
-        #             renderize = "add_equipment"
-        #             value = []
-        #             value1 = []
-        #             for item in temp["from"]:
-        #                 if "equipment" in item:
-        #                     append = {"index": temp["from"].index(item),
-        #                               "name": item["equipment"]["name"],
-        #                               "quantity": item["quantity"],
-        #                               "url": item["equipment"]["url"]}
-        #                     value.append(append)
-        #                     value1.append(append)
-        #
-        #                 elif "equipment_option" in item:
-        #                     renderize = "option_equipment"
-        #                     append = {"index": temp["from"].index(item),
-        #                               "name": item["equipment_option"]["from"]["equipment_category"]["name"],
-        #                               "quantity": item["equipment_option"]["choose"]}
-        #                     value.append(append)
-        #                     value1.append(append)
-        #
-        #                 else:
-        #                     if len(item) == 3:
-        #                         name = item["0"]["equipment"]["name"] + "; " + item["1"]["equipment"]["name"]
-        #                         qty = str(item["0"]["quantity"]) + "; " + str(item["1"]["quantity"])
-        #                         append = {"index": temp["from"].index(item),
-        #                                   "name": name,
-        #                                   "quantity": qty}
-        #                         value.append(append)
-        #
-        #                         append = [{"index": temp["from"].index(item),
-        #                                    "name": item["0"]["equipment"]["name"],
-        #                                    "quantity": item["0"]["quantity"],
-        #                                    "url": item["0"]["equipment"]["url"]},
-        #                                   {"index": temp["from"].index(item),
-        #                                    "name": item["1"]["equipment"]["name"],
-        #                                    "quantity": item["1"]["quantity"],
-        #                                    "url": item["1"]["equipment"]["url"],
-        #                                    "munition": {"name": item["2"]["equipment"]["name"],
-        #                                                 "quantity": item["2"]["quantity"],
-        #                                                 "url": item["2"]["equipment"]["url"]}}]
-        #                         value1.extend(append)
-        #
-        #                     else:
-        #                         renderize = "option_equipment"
-        #                         name = item["0"]["equipment"]["name"] + "; " + \
-        #                                item["1"]["equipment_option"]["from"]["equipment_category"]["name"]
-        #                         qty = str(item["0"]["quantity"]) + "; " + str(item["1"]["equipment_option"]["choose"])
-        #                         append = {"index": temp["from"].index(item),
-        #                                   "name": name,
-        #                                   "quantity": qty}
-        #                         value.append(append)
-        #
-        #                         append = [{"index": temp["from"].index(item),
-        #                                    "name": item["0"]["equipment"]["name"],
-        #                                    "quantity": item["0"]["quantity"],
-        #                                    "url": item["0"]["equipment"]["url"]},
-        #                                   {"index": temp["from"].index(item),
-        #                                    "name": item["1"]["equipment_option"]["from"]["equipment_category"]["name"],
-        #                                    "quantity": item["1"]["equipment_option"]["choose"],
-        #                                    "url": item["1"]["equipment_option"]["from"]["equipment_category"]["url"]}]
-        #                         value1.extend(append)
-        #
-        #             return render(request, "equipment.html", {"name": "equipment", "label": label,
-        #                                                       "value": value})
-        #
-        #         elif renderize == "option_equipment":
-        #             if req["equipment"] == "/api/equipment-categories/martial-weapons":
-        #                 label = "Choose 2 equipment from the list bellow: "
-        #                 renderize = "add_equipment"
-        #                 value = []
-        #                 option = call(url + req["equipment"])
-        #                 for item in option["equipment"]:
-        #                     append = {"index": item["index"],
-        #                               "name": item["name"],
-        #                               "quantity": 1,
-        #                               "url": item["url"]}
-        #                     value.append(append)
-        #                     value1.append(append)
-        #
-        #                 return render(request, "equipment_option.html", {"name": "equipment", "label": label,
-        #                                                                  "value": value})
-        #
-        #             else:
-        #                 renderize = "add_equipment"
-        #
-        #         elif renderize == "add_equipment":
-        #             renderize = "choose_equipment"
-        #             js_class["starting_equipment_options"].pop(0)
-        #             for item in value1:
-        #                 if req["equipment"] == item["index"]:
-        #                     item.pop("index")
-        #                     character["equipment"].append(item)
+        elif character["class"] == "Fighter":
+            while len(js_class["starting_equipment_options"]) > 0:
+                temp = js_class["starting_equipment_options"][0]
+                if renderize == "choose_equipment":
+                    label = "Choose " + str(temp["choose"]) + " equipment from the list bellow: "
+                    renderize = "add_equipment"
+                    value = []
+                    value1 = []
+                    for item in temp["from"]:
+                        if "equipment" in item:
+                            append = {"index": item["equipment"]["index"],
+                                      "name": item["equipment"]["name"],
+                                      "quantity": item["quantity"],
+                                      "url": item["equipment"]["url"]}
+                            value.append(append)
+                            value1.append(append)
+
+                        elif "equipment_option" in item:
+                            renderize = "option_equipment"
+                            append = {"index": item["equipment_option"]["from"]["equipment_category"]["index"],
+                                      "name": item["equipment_option"]["from"]["equipment_category"]["name"],
+                                      "quantity": item["equipment_option"]["choose"]}
+                            value.append(append)
+
+                        else:
+                            name = ""
+                            qty = ""
+                            for num in item:
+                                if "equipment" in item[num]:
+                                    if item[num]["quantity"] < 3:
+                                        if name == "":
+                                            name = item[num]["equipment"]["name"]
+                                            qty = str(item[num]["quantity"])
+
+                                        else:
+                                            name += "; " + item[num]["equipment"]["name"]
+                                            qty += "; " + str(item[num]["quantity"])
+
+                                    append = {"index": item["0"]["equipment"]["index"],
+                                              "name": item[num]["equipment"]["name"],
+                                              "quantity": item[num]["quantity"],
+                                              "url": item[num]["equipment"]["url"]}
+                                    value1.append(append)
+
+                                else:
+                                    name += "; " + item[num]["equipment_option"]["from"]["equipment_category"]["name"]
+                                    qty += "; " + str(item[num]["equipment_option"]["choose"])
+                                    renderize = "option_equipment"
+
+                            append = {"index": item["0"]["equipment"]["index"],
+                                      "name": name,
+                                      "quantity": qty}
+                            value.append(append)
+
+                    if renderize == "option_equipment":
+                        option = call(url + "/api/equipment-categories/martial-weapons")
+
+                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                                                              "value": value})
+
+                elif renderize == "option_equipment":
+                    label = "Choose 1 equipment from the list bellow: "
+                    if req["equipment"] != "martial-weapons":
+                        renderize = "add_equipment"
+
+                    if req["equipment"] == "shield":
+                        append = {"name": value1[0]["name"],
+                                  "quantity": value1[0]["quantity"],
+                                  "url": value1[0]["url"]}
+                        character["equipment"].append(append)
+
+                    value = []
+                    for item in option["equipment"]:
+                        append = {"index": item["index"],
+                                  "name": item["name"],
+                                  "quantity": 1,
+                                  "url": item["url"]}
+                        value.append(append)
+                        value1.append(append)
+
+                    return render(request, "equipment.html", {"name": "equipment", "label": label,
+                                                              "value": value})
+
+                elif renderize == "add_equipment":
+                    renderize = "choose_equipment"
+                    js_class["starting_equipment_options"].pop(0)
+                    for item in value1:
+                        if req["equipment"] == item["index"]:
+                            item.pop("index")
+                            character["equipment"].append(item)
+
 
         elif character["class"] == "Rogue":
             while len(js_class["starting_equipment_options"]) > 0:
@@ -843,7 +836,6 @@ def cria_Ficha(request):
         else:
             character.pop("spells")
 
-        return render(request, "ficha.html", character)
     return render(request, "cria_ficha.html", {"name": "Name"})
 
 
