@@ -835,12 +835,12 @@ def cria_Ficha(request):
 
         else:
             character.pop("spells")
-
+    print(json.dumps(character, indent=2)) 
     return render(request, "text_name.html", {"name": "Name"})
 
 
 def home(request):
-    return render(request, "home.html")
+    return render(request, "account/login.html")
 
 
 def password_reset_request(request):
