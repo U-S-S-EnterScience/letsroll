@@ -840,7 +840,7 @@ def cria_Ficha(request):
 
 
 def home(request):
-    return render(request, "account/login.html")
+    return render(request, "home.html")
 
 
 def password_reset_request(request):
