@@ -339,7 +339,6 @@ def cria_Ficha(request):
             character["alignment"] = req["alignment"]
 
         if renderize == "class":
-            #renderize ="choose_equipment"
             renderize = "method_generate"
             label = "Choose a class for your character"
             return render(request, "radio.html", {"name": "class", "label": label, "value": classes})
@@ -786,47 +785,47 @@ def cria_Ficha(request):
                                       "url": item["url"]}
                             character["equipment"].append(append)
 
-            if character["armor_class"] == 0:
-                js = call(url + '/api/equipment-categories/armor')
-                List = js['equipment']
-                shield_armor = 0
-                armor = 0
+        if character["armor_class"] == 0:
+            js = call(url + '/api/equipment-categories/armor')
+            List = js['equipment']
+            shield_armor = 0
+            armor = 0
 
-                for item in character['equipment']:
-                    for item1 in List:
-                        if item['name'] == item1['name']:
-                            if item1['index'] == 'shield':
-                                shield = call(url + item1['url'])
-                                shield_armor = shield['armor_class']['base']
-                            else:
-                                armor = call(url + item1['url'])
+            for item in character['equipment']:
+                for item1 in List:
+                    if item['name'] == item1['name']:
+                        if item1['index'] == 'shield':
+                            shield = call(url + item1['url'])
+                            shield_armor = shield['armor_class']['base']
+                        else:
+                            armor = call(url + item1['url'])
 
-                if armor == 0:
-                    character['armor_class'] = 10 + character['ability'][1]['bonus']
+            if armor == 0:
+                character['armor_class'] = 10 + character['ability'][1]['bonus']
 
-                elif armor['armor_class']['dex_bonus'] == False:
-                    character['armor_class'] = armor['armor_class']['base'] + shield_armor
+            elif armor['armor_class']['dex_bonus'] == False:
+                character['armor_class'] = armor['armor_class']['base'] + shield_armor
 
-                elif armor['armor_class']['max_bonus'] != None:
-                    if character['ability'][1]['bonus'] > armor['armor_class']['max_bonus']:
-                        character['armor_class'] = (armor['armor_class']['base'] +
-                                                    shield_armor +
-                                                    armor['armor_class']['max_bonus'])
-
-                    else:
-                        character['armor_class'] = (armor['armor_class']['base'] +
-                                                    shield_armor +
-                                                    character['ability'][1]['bonus'])
+            elif armor['armor_class']['max_bonus'] != None:
+                if character['ability'][1]['bonus'] > armor['armor_class']['max_bonus']:
+                    character['armor_class'] = (armor['armor_class']['base'] +
+                                                shield_armor +
+                                                armor['armor_class']['max_bonus'])
 
                 else:
                     character['armor_class'] = (armor['armor_class']['base'] +
                                                 shield_armor +
                                                 character['ability'][1]['bonus'])
 
-                if character["class"] == "Fighter":
-                    for item in character['features']:
-                        if item['name'] == "Fighting Style: Defense":
-                            character['armor_class'] += 1
+            else:
+                character['armor_class'] = (armor['armor_class']['base'] +
+                                            shield_armor +
+                                            character['ability'][1]['bonus'])
+
+            if character["class"] == "Fighter":
+                for item in character['features']:
+                    if item['name'] == "Fighting Style: Defense":
+                        character['armor_class'] += 1
 
             if "spellcasting" in js_level[0]:
                 if len(character["spells"]) == 1:
