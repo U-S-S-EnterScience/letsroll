@@ -11,7 +11,7 @@
             <h3 class='label-description'>{{ label }}</h3>
             {% for item in value %}
                 <input type="radio" id="{{ item.index }}" name="{{ name }}" value= "{{ item.index }}" class='radios' onchange="change()">
-                <label  class='label-description' for="{{ item.index }}">Equipment: {{ item.name }} Quantity: {{ item.quantity }}</label>
+                <label  class='label-description' for="{{ item.index }}">{{ item.name }}</label>
                 <br>
             {%endfor%}
         </div>
