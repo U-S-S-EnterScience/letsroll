@@ -5,13 +5,30 @@
 {% block title %}Entrar{% endblock %}                                   <!-- Titulo da pagina -->
 
 {% block content %}
-    <h2>Entrar</h2>
+<div class="col-md-12">
+    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
+        <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
+
+
+    <h2 class="col-md-4" style="color: rgb(107, 107, 107);">Entrar</h2>
     <form method="post">                                                <!-- Formulário para logar -->
         {% csrf_token %}
         {{ form|crispy }}      
-        <button class="btn btn-success" type="submit">Entrar</button>   <!-- Botão de entrar -->
-        <a href="{% provider_login_url "facebook" method="js_sdk" %}"> Entrar com Facebook </a>
-        <a href="{% provider_login_url "google" %}"> Entrar com Google </a>
-        <a href="/password_reset">Esqueceu a senha?</a>
+        <div col-md-12>
+            <div class="col-md-12">
+                <button class="col-md-4 btn btn-success mr-5" type="submit">Entrar</button>   <!-- Botão de entrar -->
+    
+                <a class=" col-md-4 btn btn-primary" href="/password_reset">Esqueceu a senha?</a>
+                </div>
+    
+            <div class="col-md-12">
+        <a class="col-md-4 mr-5 btn btn-warning" style="color: white;" href="{% provider_login_url "facebook" method="js_sdk" %}"> Entrar com Facebook </a>
+        <a class="col-md-4 btn btn-danger" href="{% provider_login_url "google" %}"> Entrar com Google </a>
+            </div>
+           
+    </div>
     </form>
+    </div>
+    </div>
+    </div>
 {% endblock %}
