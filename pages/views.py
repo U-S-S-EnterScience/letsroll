@@ -183,6 +183,7 @@ def cria_Ficha(request):
             character["name"] = req["name"]
             renderize = "race"
 
+        print(renderize)
         if renderize == "race":
             renderize = "alignment"
             label = "Choose a race for your character"
@@ -876,7 +877,8 @@ def cria_Ficha(request):
                 if renderize == "level_1":
                     renderize = "choosed_level_1"
                     choose = character["spells"]["spellcasting"]["spells_known"]
-                    return render(request, "checkbox.html", {"name": "spell level 1", "value": level_1, "choose": choose})
+                    return render(request, "checkbox.html",
+                                  {"name": "spell level 1", "value": level_1, "choose": choose})
 
                 if renderize == "choosed_level_1":
                     for item in req:
@@ -902,13 +904,88 @@ def cria_Ficha(request):
                 sheet.save()
 
             personagem = character
+
             return render(request, "ficha.html", personagem)
-        print(json.dumps(character["equipment"], indent=2))
-        print(character["armor_class"])
+        print(json.dumps(character, indent=2))
     return render(request, "text_name.html", {"name": "Name"})
 
 
 def home(request):
+    # character = {
+    #     "name": "",
+    #     "race": "",
+    #     "speed": 0,
+    #     "ability": [
+    #         {
+    #             "ability_score": {
+    #                 "name": "Strength",
+    #                 "url": "/api/ability-scores/str"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         },
+    #         {
+    #             "ability_score": {
+    #                 "name": "Dexterity",
+    #                 "url": "/api/ability-scores/dex"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         },
+    #         {
+    #             "ability_score": {
+    #                 "name": "Constitution",
+    #                 "url": "/api/ability-scores/con"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         },
+    #         {
+    #             "ability_score": {
+    #                 "index": "int",
+    #                 "name": "Intelligence",
+    #                 "url": "/api/ability-scores/int"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         },
+    #         {
+    #             "ability_score": {
+    #                 "name": "Wisdom",
+    #                 "url": "/api/ability-scores/wis"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         },
+    #         {
+    #             "ability_score": {
+    #                 "name": "Charisma",
+    #                 "url": "/api/ability-scores/cha"
+    #             },
+    #             "value": 0,
+    #             "bonus": 0
+    #         }
+    #     ],
+    #     "prof_bonus": 0,
+    #     "alignment": "",
+    #     "size": "",
+    #     "subrace": "",
+    #     "proficiencies": [],
+    #     "languages": [],
+    #     "skills": [],
+    #     "traits": [],
+    #     "class": "",
+    #     "hit_die": 0,
+    #     "hit_points": 0,
+    #     "experience_points": 0,
+    #     "level": 0,
+    #     "armor_class": 0,
+    #     "features": [],
+    #     "initiative": 0,
+    #     "saving_throws": [],
+    #     "equipment": [],
+    #     "spells": {"spell_list": {"cantrips": [], "level_1": []}}
+    # }
     value = character_Sheet.objects.all().filter(user=request.user)
     return render(request, "home.html", {"value": value})
 
