@@ -1,0 +1,22 @@
+{% extends 'base.html' %}                   <!-- Traz todo o conteudo de "base.html" pra ca -->
+
+{% block title %}Loja Python{% endblock %}  <!-- Muda o titulo da pagina -->
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h2>Build your Character</h2>
+        <p></p>
+        <div id="div_name">
+             <input type="text" id="name" name="name">
+        </div>
+        <p></p>
+        <input type="submit" id="bt_next">
+    </form>
+
+    <script>
+
+    </script>
+
+
+{% endblock %}
