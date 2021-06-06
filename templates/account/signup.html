@@ -5,16 +5,21 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block content %}
-<div class="col-md-12">
-    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
-        <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
 
-    <h2>Cadastro</h2>
+    
+    <div class="col-md-12">
+        <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
+            <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
+                <h2 class="col-md-4">Cadastro</h2>
+                <div class="col-md-6">
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="btn btn-success" type="submit">Cadastrar</button>
+        <div class="col-md-12">
+        <button class="btn btn-success ml-5 col-md-4" type="submit">Cadastrar</button>
+    </div>
     </form>
+    </div>
     </div>
     </div>
 </div>
