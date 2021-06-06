@@ -164,7 +164,6 @@ def cria_Ficha(request):
             character["name"] = req["name"]
             renderize = "race"
 
-        print(renderize)
         if renderize == "race":
             renderize = "alignment"
             label = "Choose a race for your character"
@@ -809,81 +808,80 @@ def cria_Ficha(request):
                     if item['name'] == "Fighting Style: Defense":
                         character['armor_class'] += 1
 
-            if "spellcasting" in js_level[0]:
-                if len(character["spells"]) == 1:
-                    renderize = "spell_list"
+        if "spellcasting" in js_level[0]:
+            if len(character["spells"]) == 1:
+                renderize = "spell_list"
 
-                character["spells"]["spellcasting"] = js_level[0]["spellcasting"]
+            character["spells"]["spellcasting"] = js_level[0]["spellcasting"]
 
-                if character["class"] == "Wizard":
-                    character["spells"]["spellcasting"]["spells_known"] = 6
+            if character["class"] == "Wizard":
+                character["spells"]["spellcasting"]["spells_known"] = 6
 
-                for item in character["ability"]:
-                    if item["ability_score"]["url"] == js_class["spellcasting"]["spellcasting_ability"]["url"]:
-                        character["spells"]["ability"] = item["ability_score"]["name"]
-                        character["spells"]["spell_save_dc"] = 8 + item["bonus"] + character["prof_bonus"]
-                        character["spells"]["spell_attack_modifier"] = item["bonus"] + character["prof_bonus"]
-                        character["spells"]["preparing_spells"] = item["bonus"] + character["level"]
+            for item in character["ability"]:
+                if item["ability_score"]["url"] == js_class["spellcasting"]["spellcasting_ability"]["url"]:
+                    character["spells"]["ability"] = item["ability_score"]["name"]
+                    character["spells"]["spell_save_dc"] = 8 + item["bonus"] + character["prof_bonus"]
+                    character["spells"]["spell_attack_modifier"] = item["bonus"] + character["prof_bonus"]
+                    character["spells"]["preparing_spells"] = item["bonus"] + character["level"]
 
-                if renderize == "spell_list":
-                    renderize = "cantrips"
-                    spell_list = call(url + js_class["spells"])
-                    cantrips = []
-                    level_1 = []
-                    for item in spell_list["results"]:
-                        spell = call(url + item["url"])
-                        if spell["level"] == 0:
-                            cantrips.append(item)
+            if renderize == "spell_list":
+                renderize = "cantrips"
+                spell_list = call(url + js_class["spells"])
+                cantrips = []
+                level_1 = []
+                for item in spell_list["results"]:
+                    spell = call(url + item["url"])
+                    if spell["level"] == 0:
+                        cantrips.append(item)
 
-                        elif spell["level"] == 1:
-                            level_1.append(item)
+                    elif spell["level"] == 1:
+                        level_1.append(item)
 
-                        else:
-                            break
+                    else:
+                        break
 
-                if renderize == "cantrips":
-                    renderize = "choosed_cantrips"
-                    choose = character["spells"]["spellcasting"]["cantrips_known"]
-                    return render(request, "checkbox.html", {"name": "cantrips", "value": cantrips, "choose": choose})
+            if renderize == "cantrips":
+                renderize = "choosed_cantrips"
+                choose = character["spells"]["spellcasting"]["cantrips_known"]
+                return render(request, "checkbox.html", {"name": "cantrips", "value": cantrips, "choose": choose})
 
-                if renderize == "choosed_cantrips":
-                    renderize = "level_1"
-                    for item in req:
-                        for item1 in cantrips:
-                            if item != "csrfmiddlewaretoken":
-                                if item == item1["index"]:
-                                    append = {"name": item1["name"], "url": item1["url"]}
-                                    character["spells"]["spell_list"]["cantrips"].append(append)
+            if renderize == "choosed_cantrips":
+                renderize = "level_1"
+                for item in req:
+                    for item1 in cantrips:
+                        if item != "csrfmiddlewaretoken":
+                            if item == item1["index"]:
+                                append = {"name": item1["name"], "url": item1["url"]}
+                                character["spells"]["spell_list"]["cantrips"].append(append)
 
-                if renderize == "level_1":
-                    renderize = "choosed_level_1"
-                    choose = character["spells"]["spellcasting"]["spells_known"]
-                    return render(request, "checkbox.html",
-                                  {"name": "spell level 1", "value": level_1, "choose": choose})
+            if renderize == "level_1":
+                renderize = "choosed_level_1"
+                choose = character["spells"]["spellcasting"]["spells_known"]
+                return render(request, "checkbox.html",
+                              {"name": "spell level 1", "value": level_1, "choose": choose})
 
-                if renderize == "choosed_level_1":
-                    for item in req:
-                        for item1 in level_1:
-                            if item != "csrfmiddlewaretoken":
-                                if item == item1["index"]:
-                                    append = {"name": item1["name"], "url": item1["url"]}
-                                    character["spells"]["spell_list"]["level_1"].append(append)
+            if renderize == "choosed_level_1":
+                for item in req:
+                    for item1 in level_1:
+                        if item != "csrfmiddlewaretoken":
+                            if item == item1["index"]:
+                                append = {"name": item1["name"], "url": item1["url"]}
+                                character["spells"]["spell_list"]["level_1"].append(append)
 
-                finish = True
+            finish = True
 
-            else:
-                finish = True
-                character.pop("spells")
+        else:
+            finish = True
+            character.pop("spells")
 
-            if finish:
-                sheet = character_Sheet(user=request.user,
-                                        name=character["name"],
-                                        race=character["race"],
-                                        clas=character["class"],
-                                        level=character["level"],
-                                        sheet=character)
-                sheet.save()
-
+        if finish:
+            sheet = character_Sheet(user=request.user,
+                                    name=character["name"],
+                                    race=character["race"],
+                                    clas=character["class"],
+                                    level=character["level"],
+                                    sheet=character)
+            sheet.save()
             personagem = character
             print(json.dumps(character, indent=2))
             return render(request, "ficha.html", personagem)
