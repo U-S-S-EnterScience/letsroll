@@ -70,16 +70,16 @@
     <div class="row">
         <div class='col-4' id='ficha'>
             <label class='label-description' for="character-name">Character Name: </label>
-            <input class='description-value' id='character-name' value='{{ character_name }}' readonly=true size="{{ character_name|length }}"></input>
+            <input class='description-value' id='character-name' value='{{ name }}' readonly=true size="{{ name|length }}"></input>
             <p></p>
         </div>
         <div class='col-4' id='ficha'>
             <label class='label-description' for="character-race">Race: </label>
-            <input class='description-value' id='character-race' value='{{ race.name }}' readonly=true size="{{ race.name|length }}"></input>
+            <input class='description-value' id='character-race' value='{{ race }}' readonly=true size="{{ race|length }}"></input>
         </div>
         <div class='col-4' id='ficha'>
             <label class='label-description' for="character-subrace">Subrace:</label>
-            <input class='description-value' id='character-subrace' value='{{ subrace.name }}' readonly=true size="{{ subrace.name|length }}"></input>
+            <input class='description-value' id='character-subrace' value='{{ subrace }}' readonly=true size="{{ subrace|length }}"></input>
         </div>
     </div>
     <div class="row">
@@ -108,7 +108,7 @@
             
             <label class='label-description'>Features:</label>
             <p></p>
-            {% for value5 in stats.features %}
+            {% for value5 in features %}
                 <input class='description-value' id='character-features-value1' value='{{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
                 <p></p>
             {%endfor%}
@@ -116,7 +116,7 @@
             <label class='label-description'>Equipments</label>
             <p></p>
             {% for value5 in equipment %}
-                <label class='label-description' for="character-equipment-value0">-{{ value5.equipment.name }}</label>
+                <label class='label-description' for="character-equipment-value0">-{{ value5.name }}</label>
                 <input class='description-value' id='character-equipments-value0' value='(x{{ value5.quantity }})' readonly=true size='5'></input>
                 <p></p>
             {%endfor%}
@@ -145,19 +145,12 @@
             <h2>Skills</h2>
             <ul>
             {% for value3 in skills %}
-                <li>{{ value3.skill.name }}: {{ value3.bonus }}</li>
+                <li>{{ value3.name }}</li>
             {%endfor%}
             </ul>
     
             <h2>Stats</h2>
-            <p>Proficience Bonus: {{ stats.prof_bonus }}</p>
-    
-            <h3>Class Specificts</h3>
-            <ul>
-                {% for value4 in stats.class_specific.items %}
-                    <li>{{ value4.0 }}: {{ value4.1 }}</li>
-                {% endfor %}
-            </ul>
+            <p>Proficience Bonus: {{ prof_bonus }}</p>
     
             <!--<h3>Features</h3>
             <ul>

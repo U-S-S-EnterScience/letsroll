@@ -99,72 +99,53 @@ def call(url):
 
 
 def ficha(request):
-    personagem = dict(character_name="Drezon Tizar", race={"index": "elf", "name": "Elf", "url": "/api/races/elf"},
-                      subrace={"index": "high-elf", "name": "High Elf", "url": "/api/subraces/high-elf"}, ability=[
-            {"ability_score": {"index": "str", "name": "Strength", "url": "/api/ability-scores/str"}, "value": 13,
-             "bonus": 1},
-            {"ability_score": {"index": "dex", "name": "Dexterity", "url": "/api/ability-scores/dex"}, "value": 17,
-             "bonus": 3},
-            {"ability_score": {"index": "con", "name": "Constitution", "url": "/api/ability-scores/con"}, "value": 12,
-             "bonus": 1},
-            {"ability_score": {"index": "int", "name": "Intelligence", "url": "/api/ability-scores/int"}, "value": 12,
-             "bonus": 1},
-            {"ability_score": {"index": "wis", "name": "Wisdom", "url": "/api/ability-scores/wis"}, "value": 12,
-             "bonus": 1},
-            {"ability_score": {"index": "cha", "name": "Charisma", "url": "/api/ability-scores/cha"}, "value": 9,
-             "bonus": -1}], speed=30, alignment="Chaotic Neutral", size="Medium",
+    personagem = dict(name="Drezon Tizar", race="Elf", subrace="High Elf", ability=[
+        {"ability_score": {"name": "Strength", "url": "/api/ability-scores/str"}, "value": 13,
+         "bonus": 1},
+        {"ability_score": {"name": "Dexterity", "url": "/api/ability-scores/dex"}, "value": 17,
+         "bonus": 3},
+        {"ability_score": {"name": "Constitution", "url": "/api/ability-scores/con"}, "value": 12,
+         "bonus": 1},
+        {"ability_score": {"name": "Intelligence", "url": "/api/ability-scores/int"}, "value": 12,
+         "bonus": 1},
+        {"ability_score": {"name": "Wisdom", "url": "/api/ability-scores/wis"}, "value": 12,
+         "bonus": 1},
+        {"ability_score": {"name": "Charisma", "url": "/api/ability-scores/cha"}, "value": 9,
+         "bonus": -1}], speed=30, alignment="Chaotic Neutral", size="Medium",
                       proficiencies=[
-                          {"index": "longswords", "name": "Longswords", "url": "/api/proficiencies/longswords"},
-                          {"index": "shortswords", "name": "Shortswords",
-                           "url": "/api/proficiencies/shortswords"},
-                          {"index": "shortbows", "name": "Shortbows", "url": "/api/proficiencies/shortbows"},
-                          {"index": "longbows", "name": "Longbows", "url": "/api/proficiencies/longbows"},
-                          {"index": "all-armor", "name": "All armor", "url": "/api/proficiencies/all-armor"},
-                          {"index": "shields", "name": "Shields", "url": "/api/proficiencies/shields"},
-                          {"index": "simple-weapons", "name": "Simple weapons",
-                           "url": "/api/proficiencies/simple-weapons"},
-                          {"index": "martial-weapons", "name": "Martial weapons",
-                           "url": "/api/proficiencies/martial-weapons"}],
-                      languages=[{"index": "common", "name": "Common", "url": "/api/languages/common"},
-                                 {"index": "elvish", "name": "Elvish", "url": "/api/languages/elvish"},
-                                 {"index": "deep-speech", "name": "Deep Speech", "url": "/api/languages/deep-speech"}],
-                      skills=[{"skill": {"index": "skill-perception", "name": "Skill: Perception",
-                                         "url": "/api/proficiencies/skill-perception"}, "bonus": 3}, {
-                                  "skill": {"index": "skill-acrobatics", "name": "Skill: Acrobatics",
-                                            "url": "/api/proficiencies/skill-acrobatics"}, "bonus": 5}, {
-                                  "skill": {"index": "skill-perception", "name": "Skill: Perception",
-                                            "url": "/api/proficiencies/skill-perception"}, "bonus": 3}],
-                      traits=[{"index": "darkvision", "name": "Darkvision", "url": "/api/traits/darkvision"},
-                              {"index": "fey-ancestry", "name": "Fey Ancestry", "url": "/api/traits/fey-ancestry"},
-                              {"index": "trance", "name": "Trance", "url": "/api/traits/trance"},
-                              {"index": "elf-weapon-training", "name": "Elf Weapon Training",
-                               "url": "/api/traits/elf-weapon-training"},
-                              {"index": "high-elf-cantrip", "name": "High Elf Cantrip: Ray of Frost",
-                               "url": "/api/traits/high-elf-cantrip"}],
-                      classes={"index": "fighter", "name": "Fighter", "url": "/api/classes/fighter"}, hit_die=10,
-                      hit_points=11, experience_points=0, armor_class=14, stats=
-                      {"level": 1, "ability_score_bonuses": 0, "prof_bonus": 2,
-                       "features": [{"index": "second-wind", "name": "Second Wind", "url": "/api/features/second-wind"},
-                                    {"index": "fighter-fighting-style-two-weapon-fighting",
-                                     "name": "Fighting Style: Two-Weapon Fighting",
-                                     "url": "/api/features/fighter-fighting-style-two-weapon-fighting"}],
-                       "class_specific": {"action_surges": 0, "indomitable_uses": 0, "extra_attacks": 0}}, initiative=3,
-                      saving_throws=[
-                          {"saving": {"index": "str", "name": "STR", "url": "/api/ability-scores/str"}, "bonus": 3},
-                          {"saving": {"index": "con", "name": "CON", "url": "/api/ability-scores/con"}, "bonus": 3}],
-                      equipment=[{"equipment": {"index": "leather", "name": "Leather", "url": "/api/equipment/leather"},
-                                  "quantity": 1},
-                                 {"equipment": {"index": "longbow", "name": "Longbow", "url": "/api/equipment/longbow"},
-                                  "quantity": 1},
-                                 {"equipment": {"index": "arrow", "name": "Arrow", "url": "/api/equipment/arrow"},
-                                  "quantity": 20}, {"equipment": {"index": "longsword", "name": "Longsword",
-                                                                  "url": "/api/equipment/longsword"}, "quantity": 1}, {
-                                     "equipment": {"index": "shortsword", "name": "Shortsword",
-                                                   "url": "/api/equipment/shortsword"}, "quantity": 1},
-                                 {"equipment": {"index": "handaxe", "name": "Handaxe", "url": "/api/equipment/handaxe"},
-                                  "quantity": 2},
-                                 {"equipment": {"index": "dungeoneers-pack", "name": "Dungeoneer's Pack",
-                                                "url": "/api/equipment/dungeoneers-pack"}, "quantity": 1}])
+                          {"name": "Longswords", "url": "/api/proficiencies/longswords"},
+                          {"name": "Shortswords", "url": "/api/proficiencies/shortswords"},
+                          {"name": "Shortbows", "url": "/api/proficiencies/shortbows"},
+                          {"name": "Longbows", "url": "/api/proficiencies/longbows"},
+                          {"name": "All armor", "url": "/api/proficiencies/all-armor"},
+                          {"name": "Shields", "url": "/api/proficiencies/shields"},
+                          {"name": "Simple weapons", "url": "/api/proficiencies/simple-weapons"},
+                          {"name": "Martial weapons", "url": "/api/proficiencies/martial-weapons"}],
+                      languages=[{"name": "Common", "url": "/api/languages/common"},
+                                 {"name": "Elvish", "url": "/api/languages/elvish"},
+                                 {"name": "Deep Speech", "url": "/api/languages/deep-speech"}],
+                      skills=[{"name": "Skill: Perception", "url": "/api/proficiencies/skill-perception"},
+                              {"name": "Skill: Acrobatics", "url": "/api/proficiencies/skill-acrobatics"},
+                              {"name": "Skill: Perception", "url": "/api/proficiencies/skill-perception"}],
+                      traits=[{"name": "Darkvision", "url": "/api/traits/darkvision"},
+                              {"name": "Fey Ancestry", "url": "/api/traits/fey-ancestry"},
+                              {"name": "Trance", "url": "/api/traits/trance"},
+                              {"name": "Elf Weapon Training", "url": "/api/traits/elf-weapon-training"},
+                              {"name": "High Elf Cantrip: Ray of Frost", "url": "/api/traits/high-elf-cantrip"}],
+                      classes="Fighter", hit_die=10, hit_points=11, experience_points=0, armor_class=14,
+                      level=1, prof_bonus=2,
+                      features=[{"name": "Second Wind", "url": "/api/features/second-wind"},
+                                {"name": "Fighting Style: Two-Weapon Fighting",
+                                 "url": "/api/features/fighter-fighting-style-two-weapon-fighting"}],
+                      initiative=3, saving_throws=[
+            {"name": "Strength", "url": "/api/ability-scores/str"},
+            {"name": "Constitution", "url": "/api/ability-scores/con"}],
+                      equipment=[{"name": "Leather", "url": "/api/equipment/leather", "quantity": 1},
+                                 {"name": "Longbow", "url": "/api/equipment/longbow", "quantity": 1},
+                                 {"name": "Shortsword", "url": "/api/equipment/shortsword", "quantity": 1},
+                                 {"name": "Handaxe", "url": "/api/equipment/handaxe", "quantity": 2},
+                                 {"name": "Dungeoneer's Pack", "url": "/api/equipment/dungeoneers-pack",
+                                  "quantity": 1}])
 
     return render(request, "ficha.html", personagem)
 
@@ -904,9 +885,9 @@ def cria_Ficha(request):
                 sheet.save()
 
             personagem = character
-
+            print(json.dumps(character, indent=2))
             return render(request, "ficha.html", personagem)
-        print(json.dumps(character, indent=2))
+
     return render(request, "text_name.html", {"name": "Name"})
 
 
