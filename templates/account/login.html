@@ -18,11 +18,11 @@
             <div class="col-md-12">
                 <button class="col-md-4 btn btn-success mr-5" type="submit">Entrar</button>   <!-- Botão de entrar -->
     
-                <a class=" col-md-4 btn btn-primary" href="/password_reset">Esqueceu a senha?</a>
+                <a class=" col-md-4 btn btn-warning" style="color: white;" href="/password_reset">Esqueceu a senha?</a>
                 </div>
     
             <div class="col-md-12">
-        <a class="col-md-4 mr-5 btn btn-warning" style="color: white;" href="{% provider_login_url "facebook" method="js_sdk" %}"> Entrar com Facebook </a>
+        <a class="col-md-4 mr-5 btn btn-primary " href="{% provider_login_url "facebook" method="js_sdk" %}"> Entrar com Facebook </a>
         <a class="col-md-4 btn btn-danger" href="{% provider_login_url "google" %}"> Entrar com Google </a>
             </div>
            
