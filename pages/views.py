@@ -21,12 +21,12 @@ def call(url):
     return json.loads(r.text)
 
 
-def ficha(request, id):
+def sheet(request, id):
     char = character_Sheet.objects.get(id=id).sheet
-    return render(request, "ficha.html", char)
+    return render(request, "sheet.html", char)
 
 
-def cria_Ficha(request):
+def sheet_create(request):
     global js_race, js_class, js_sub, js_level, renderize, lang, trait, ability, abilities_name
     global equipment, cantrips, level_1, option, value, value1, finish, character, ability_select
     url = "https://www.dnd5eapi.co"
@@ -836,7 +836,7 @@ def cria_Ficha(request):
                                     level=character["level"],
                                     sheet=character)
             sheet.save()
-            return render(request, "ficha.html", character)
+            return render(request, "sheet.html", character)
 
     return render(request, "text_name.html", {"name": "Name"})
 
