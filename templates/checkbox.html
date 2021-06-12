@@ -3,11 +3,39 @@
 {% block title %}Loja Python{% endblock %}  <!-- Muda o titulo da pagina -->
 
 {% block content %}
+
+<style>
+    .backgrounder {
+        background-color: rgb(196, 56, 56);
+        color: rgb(216, 83, 83);
+    }
+
+    .tituler{
+        padding: 20px 0px;
+    background-color: #d6445b;
+    }
+
+.label-description{
+
+    -webkit-text-stroke: 0.7px #4c51ff!important;
+    color: white;
+    font-family: "Papyrus",fantasy;
+    font-size: x-large;
+    font-weight: bold;
+    
+}
+
+</style>
     <form action="" method="POST">
         {% csrf_token %}
-        <h1 class='label-description'>Build your Character</h1>
+        <div class="col-md-12">
+            <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "
+                class="home-ground ">
+                <div class="bg-w">
+        <h1 class='label-description tituler'>Build your Character</h1>
         <p></p>
         <div id="div_radio" >
+        </div>
             <h3 class='label-description'>Choose {{ choose }} {{ name }} for your character</h3>
             <input hidden='true' id='choose' value="{{ choose }}">
             {% for item in value %}
@@ -18,6 +46,8 @@
         </div>
         <p></p>
         <input type="submit" id="bt_next" disabled='true' value="Next">
+    </div>
+</div>
     </form>
 
     <script>
