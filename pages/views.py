@@ -15,6 +15,13 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from pages.models import character_Sheet
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate
+
+@login_required     # pra acessar a view o usuário precisa estar logado
+def home(request):
+    value = character_Sheet.objects.all().filter(user=request.user)
+    return render(request, "home.html", {"value": value})
 
 def call(url):
     r = requests.get(url)
@@ -841,9 +848,7 @@ def sheet_create(request):
     return render(request, "text_name.html", {"name": "Name"})
 
 
-def home(request):
-    value = character_Sheet.objects.all().filter(user=request.user)
-    return render(request, "home.html", {"value": value})
+
 
 
 def password_reset_request(request):
