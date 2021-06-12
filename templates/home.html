@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="col-md-12">
-    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "
+    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px;"
         class="home-ground ">
         <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
 
@@ -28,10 +28,22 @@
                
         </div>
         <div class="col-md-12">
+            <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "
+            class="home-ground ">
             {% for item in value %}
-                <a href="/sheet/{{ item.id }}">{{ item.name }} - race: {{ item.race }} class: {{ item.clas }}/level: {{ item.level }}</a>
+            
+           
+            <div style="background-color: rgb(2, 0, 112);
+            border: 1px solid white;">
+            <br>
+
+
+                <a href="/sheet/{{ item.id }}" class="" style=""><span style="color: white ;-webkit-text-stroke: 0.7px #4c51ff!important;">{{ item.name }}</span> <br>race: {{ item.race }}<br> class: {{ item.clas }}/level: {{ item.level }}</a>
                 <br>
+                <br>
+            </div>
             {%endfor%}
+            </div>
         </div>
     </div>
 </div> 
