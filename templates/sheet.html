@@ -29,6 +29,8 @@
         
         #ficha {
             background-image: url(https://cdn.discordapp.com/attachments/247457383486324737/839573346361278515/scroll_3.png);
+            background-image: none!important;
+            background-color: rgb(36, 36, 36);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -38,8 +40,8 @@
             padding: 8px;
         }
         .description-value {
-            -webkit-text-stroke: 0.7px black; /* width and color */
-            color: black;
+            -webkit-text-stroke: 0.7px #000000; /* width and color */
+            color: #5ac3b0;
             background-color: transparent;
             font-family: "Papyrus",fantasy;
             font-weight: bold;
@@ -49,8 +51,7 @@
             max-width: fit-content;
         }
         .description-value:hover/*, input:focus*/{
-            -webkit-text-stroke: 0.7px black; /* width and color */
-            color: red;
+            color: rgb(230, 0, 0);
             background-color: transparent;
             font-family: "Papyrus",fantasy;
             font-weight: bold;
@@ -59,15 +60,31 @@
             outline: none;
         }
         .label-description {
-            -webkit-text-stroke: 0.7px black; /* width and color */
+            -webkit-text-stroke: 0.7px rgb(0, 0, 0); /* width and color */
             color: red;
             font-family: "Papyrus",fantasy;
             font-size: x-large;
             font-weight: bold;
         }
-        .backgrounder{
-            background-color: white;
-        }
+        .backgrounder {
+        background-color: rgb(196, 56, 56);
+        color: rgb(216, 83, 83);
+    }
+
+    .tituler{
+        padding: 20px 0px;
+    background-color: #d6445b;
+    }
+
+.label-description{
+
+    -webkit-text-stroke: 0.7px #4c51ff!important;
+    color: white;
+    font-family: "Papyrus",fantasy;
+    font-size: x-large;
+    font-weight: bold;
+    
+}
     </style>
 
     <div class="row">
@@ -85,6 +102,7 @@
             <input class='description-value' id='character-subrace' value='{{ subrace }}' readonly=true size="{{ subrace|length }}"></input>
         </div>
     </div>
+
     <div class="row">
         <div class='col-4' id='ficha'>
             <label class='label-description' for="character-alignment">Alignment:</label>
@@ -145,15 +163,15 @@
             {%endfor%}
             </ul>-->
     
-            <h2>Skills</h2>
+            <h2 class="label-description">Skills</h2>
             <ul>
             {% for value3 in skills %}
-                <li>{{ value3.name }}</li>
+                <li class="description-value">{{ value3.name }}</li>
             {%endfor%}
             </ul>
     
-            <h2>Stats</h2>
-            <p>Proficience Bonus: {{ prof_bonus }}</p>
+            <h2 class="label-description">Stats</h2>
+            <p class="description-value">Proficience Bonus: {{ prof_bonus }}</p>
     
             <!--<h3>Features</h3>
             <ul>
