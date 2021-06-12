@@ -162,9 +162,9 @@ ACCOUNT_USERNAME_REQUIRED = True                                            # É
 ACCOUNT_AUTHENTICATION_METHOD = "email"                                     # Método de autenticação = email
 ACCOUNT_EMAIL_REQUIRED = True                                               # Por padrão é opcional
 ACCOUNT_UNIQUE_EMAIL = True                                                 # O Email tem que ser unico (um para cada usuário)
-ACCOUNT_SESSION_REMEMBER = True                                             # Não se lembra do último usuário logado
-LOGIN_REDIRECT_URL = "/"                                                
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"                     # URL que sera encaminhada após clicar no link de autenticação no email
+ACCOUNT_SESSION_REMEMBER = False                                            # Não se lembra do último usuário logado
+LOGIN_REDIRECT_URL = "/home/"                                                
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/home"                 # URL que sera encaminhada após clicar no link de autenticação no email
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION="mandatory"
 SOCIALACCOUNT_EMAIL_VERIFICATION=ACCOUNT_EMAIL_VERIFICATION
