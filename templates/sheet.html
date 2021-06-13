@@ -30,7 +30,7 @@
         #ficha {
             background-image: url(https://cdn.discordapp.com/attachments/247457383486324737/839573346361278515/scroll_3.png);
             background-image: none!important;
-            background-color: rgb(36, 36, 36);
+            background-color: rgb(250,244,209);
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -41,11 +41,11 @@
         }
         .description-value {
             -webkit-text-stroke: 0.7px #000000; /* width and color */
-            color: #5ac3b0;
+            color: black;
             background-color: transparent;
             font-family: "Papyrus",fantasy;
             font-weight: bold;
-            font-size: large;
+            font-size: medium;
             border-color: transparent;
             border-style:dashed;
             max-width: fit-content;
@@ -78,10 +78,10 @@
 
 .label-description{
 
-    -webkit-text-stroke: 0.7px #4c51ff!important;
-    color: white;
+    -webkit-text-stroke: 0.7px rgb(117, 3, 3)!important;
+    color: red;
     font-family: "Papyrus",fantasy;
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     
 }
@@ -89,7 +89,7 @@
 
     <div class="row">
         <div class='col-4' id='ficha'>
-            <label class='label-description' for="character-name">Character Name: </label>
+            <label class='label-description' for="character-name">Name: </label>
             <input class='description-value' id='character-name' value='{{ name }}' readonly=true size="{{ name|length }}"></input>
             <p></p>
         </div>
@@ -135,7 +135,7 @@
             <label class='label-description'>Features:</label>
             <p></p>
             {% for value5 in features %}
-                <input class='description-value' id='character-features-value1' value='{{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
+                <input class='description-value' id='character-features-value1' value='-{{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
                 <p></p>
             {%endfor%}
             <p></p>
@@ -167,13 +167,13 @@
                 <li>{{ value2.name }}</li>
             {%endfor%}
             </ul>-->
-    
-            <h2 class="label-description">Skills</h2>
-            <ul>
+            <label class='label-description'>Skills:</label>
+            <p></p>
             {% for value3 in skills %}
-                <li class="description-value">{{ value3.name }}</li>
+                <input class='description-value' id='character-skill-value1' value='-{{ value3.name }}' readonly=true size='{{ value3.name|length }}'></input>
+                <p></p>
             {%endfor%}
-            </ul>
+            <p></p>
     
             <h2 class="label-description">Stats</h2>
             <p class="description-value">Proficience Bonus: {{ prof_bonus }}</p>
@@ -196,7 +196,7 @@
             <label class='label-description'>Attributes</label>
             <p></p>
             {% for value0 in ability %}
-                <label class='label-description' for="character-attributes-value0">-{{ value0.ability_score.name }}:</label>
+                <label class='description-value' for="character-attributes-value0">-{{ value0.ability_score.name }}:</label>
                 <input class='description-value' id='character-attributes-value0' value='{{ value0.value }} ({{ value0.bonus }})' readonly=true size='5'></input>
                 <p></p>
             {%endfor%}
@@ -206,14 +206,14 @@
             <label class='label-description'>Proficiencies:</label>
             <p></p>
             {% for value1 in proficiencies %}
-                <input class='description-value' id='character-proficiencies-value1' value='{{ value1.name }}' readonly=true size='{{ value1.name|length }}'></input>
+                <input class='description-value' id='character-proficiencies-value1' value='-{{ value1.name }}' readonly=true size='{{ value1.name|length }}'></input>
                 <p></p>
             {%endfor%}
             <p></p>
             <label class='label-description'>Languages:</label>
             <p></p>
             {% for value2 in languages %}
-                <input class='description-value' id='character-languages-value2' value='{{ value2.name }}' readonly=true size='{{ value2.name|length }}'></input>
+                <input class='description-value' id='character-languages-value2' value='-{{ value2.name }}' readonly=true size='{{ value2.name|length }}'></input>
                 <p></p>
             {%endfor%}
             <p></p>

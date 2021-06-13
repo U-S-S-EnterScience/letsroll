@@ -6,24 +6,25 @@
 
 {% block content %}
 <div class="col-md-12">
-    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
-        <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
+    <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
+        <div style=" background-color: rgb(250,244,209); justify-content: center; display: flex;" class="pt-3 col-md-12">
 
 
-    <h2 class="col-md-4" style="color: rgb(107, 107, 107);">Enter</h2>
+    <!--<h2 class="col-md-4" style="color: rgb(107, 107, 107);">Enter</h2>-->
     <form method="post">                                                <!-- Formulário para logar -->
         {% csrf_token %}
         {{ form|crispy }}      
         <div col-md-12>
             <div class="col-md-12">
-                <button class="col-md-4 btn btn-success mr-5" type="submit">Enter</button>   <!-- Botão de entrar -->
+                <button class="col-md-6 btn btn-success mr-5" type="submit">Enter</button>   <!-- Botão de entrar -->
     
-                <a class=" col-md-4 btn btn-warning" style="color: white;" href="/password_reset">Forgot your Password?</a>
+                <a class="col-md-5 btn btn-warning" style="color: white;" href="/password_reset">Forgot your Password?</a>
                 </div>
     
             <div class="col-md-12">
         <a class="col-md-4 mr-5 btn btn-primary " href="{% provider_login_url "facebook" method="js_sdk" %}"> Login with Facebook </a>
-        <a class="col-md-4 btn btn-danger" href="{% provider_login_url "google" %}"> Login with Google </a>
+        <a class="col-md-3 mr-5 btn btn-danger" href="{% provider_login_url "google" %}"> Login with Google </a>
+        <a class="col-md-3 btn btn-warning" style="color: white;" href="../signup"> Sign Up </a>
             </div>
            
     </div>

@@ -8,32 +8,16 @@
 
 {% block content %}
 <div class="col-md-12">
-    <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px;"
+    <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;"
         class="home-ground ">
-        <div style=" background-color: rgb(236, 236, 236); justify-content: center; display: flex;" class="pt-3 col-md-12">
-
-          <!--  <div style="box-shadow: 1px 1px 5px rgb(221, 221, 221);border-radius: 3px; background-color: rgb(62, 185, 79);margin-right: 25px;" class="col-md-2">
-                <a style="text-decoration: none;margin-top: 50px; font-size: large; color: rgb(243, 243, 243); font-weight: 600;"
-                    class="" href="/ficha/">Ficha Teste</a>
-            </div> -->
-
-            <div style="box-shadow: 1px 1px 5px rgb(221, 221, 221);border-radius: 3px; background-color: rgb(62, 185, 79);" class="col-md-2">
-                <a style="text-decoration: none;margin-top: 50px; font-size: large;color: rgb(243, 243, 243);font-weight: 600"
-                    href="/sheet_create/">Create a New Character Sheet</a>
-            </div>
-        </div>
-        <!--    <div class="col-md-12">
-            <p style="color:white;margin-top: 50px;color: rgb(221, 7, 139);font-weight: 500"> Você entrou como:
-                {{user.username}}</p>
-               
-        </div> -->
+        
         <div class="col-md-12">
-            <div style="background-color: rgb(236, 236, 236); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px;  "
+            <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;  "
             class="home-ground ">
             {% for item in value %}
             
            
-            <div style="background-color: rgb(2, 0, 112);
+            <div style="background-color: rgb(250,244,209);
             border: 1px solid white;">
             <br>
 
@@ -47,6 +31,25 @@
 
 
         </div>
+
+        <div style=" background-color: transparent; justify-content: center; display: flex;" class="pt-3 col-md-12">
+
+          <!--  <div style="box-shadow: 1px 1px 5px rgb(221, 221, 221);border-radius: 3px; background-color: rgb(62, 185, 79);margin-right: 25px;" class="col-md-2">
+                <a style="text-decoration: none;margin-top: 50px; font-size: large; color: rgb(243, 243, 243); font-weight: 600;"
+                    class="" href="/ficha/">Ficha Teste</a>
+            </div> -->
+
+            <div style="box-shadow: 1px 1px 5px rgb(250,244,209);border-radius: 3px; background-color: rgb(62, 185, 79);" class="col-md-4">
+                <a style="text-decoration: none;margin-top: 50px; font-size: large;color: rgb(243, 243, 243);font-weight: 600"
+                    href="/sheet_create/">Create a New Character Sheet</a>
+            </div>
+        </div>
+        <!--    <div class="col-md-12">
+            <p style="color:white;margin-top: 50px;color: rgb(221, 7, 139);font-weight: 500"> Você entrou como:
+                {{user.username}}</p>
+               
+        </div> -->
+        
     </div>
 </div> 
 

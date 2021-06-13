@@ -7,17 +7,17 @@
 
 
 {% block content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
+<h1 style="color:rgb(250,244,209)">{% trans "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
 
-<p>{% blocktrans with confirmation.email_address.email as email %}Por favor, confirme que este  <a href="mailto:{{ email }}">{{ email }}</a> é o e-mail do usuário {{ user_display }}.{% endblocktrans %}</p>
+<p style="color:rgb(250,244,209)">{% blocktrans with confirmation.email_address.email as email %}Por favor, confirme que este  <a href="mailto:{{ email }}">{{ email }}</a> é o e-mail do usuário {{ user_display }}.{% endblocktrans %}</p>
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
+    <button class="col-md-2 btn btn-success mr-5" type="submit">{% trans 'Confirm' %}</button>
 </form>
 
 {% else %}
