@@ -102,20 +102,19 @@
  <!--       <a class="navbar-brand" href="{% url 'pages:home' %}">Let's Roll</a>    -->
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link">User: {{user.username}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Exit</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../">LET'S ROLL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">User: {{user.username}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_logout' %}">Exit</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Enter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Create a New Account</a>
-                    </li>
-                     </li>
+                        <li class="nav-item">
+                            <a class="nav-link">LET'S ROLL</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>

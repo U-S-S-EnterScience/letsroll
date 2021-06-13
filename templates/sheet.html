@@ -94,12 +94,17 @@
             <p></p>
         </div>
         <div class='col-4' id='ficha'>
-            <label class='label-description' for="character-race">Race: </label>
-            <input class='description-value' id='character-race' value='{{ race }}' readonly=true size="{{ race|length }}"></input>
+            {% if subrace == "" %}
+                <label class='label-description' for="character-race">Race: </label>
+                <input class='description-value' id='character-race' value='{{ race }}' readonly=true size="{{ race|length }}"></input>
+            {% else %}
+                <label class='label-description' for="character-race">Race: </label>
+                <input class='description-value' id='character-race' value='{{ subrace }}' readonly=true size="{{ subrace|length }}"></input>
+            {% endif %}
         </div>
         <div class='col-4' id='ficha'>
-            <label class='label-description' for="character-subrace">Subrace:</label>
-            <input class='description-value' id='character-subrace' value='{{ subrace }}' readonly=true size="{{ subrace|length }}"></input>
+            <label class='label-description' for="character-class">Class:</label>
+            <input class='description-value' id='character-class' value='{{ class }}' readonly=true size="{{ class|length }}"></input>
         </div>
     </div>
 
@@ -137,8 +142,8 @@
             <label class='label-description'>Equipments</label>
             <p></p>
             {% for value5 in equipment %}
-                <label class='label-description' for="character-equipment-value0">-{{ value5.name }}</label>
-                <input class='description-value' id='character-equipments-value0' value='(x{{ value5.quantity }})' readonly=true size='5'></input>
+                <label class='description-value' for="character-equipment-value0">- {{ value5.name }}</label>
+                <input class='description-value' id='character-equipments-value0' value='Qty: {{ value5.quantity }}' readonly=true size='5'></input>
                 <p></p>
             {%endfor%}
             <p></p>
