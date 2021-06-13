@@ -269,6 +269,8 @@ def sheet_create(request):
                         if append not in character["traits"]:
                             character["traits"].append(append)
 
+            js_sub = {}
+
         if renderize == "alignment":
             renderize = "class"
             alignment = ["Chaotic Evil", "Chaotic Neutral", "Chaotic Good",
