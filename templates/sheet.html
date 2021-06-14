@@ -135,7 +135,7 @@
             <label class='label-description'>Features:</label>
             <p></p>
             {% for value5 in features %}
-                <input class='description-value' id='character-features-value1' value='-{{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
+                <input class='description-value' id='character-features-value1' value='- {{ value5.name }}' readonly=true size='{{ value5.name|length }}'></input>
                 <p></p>
             {%endfor%}
             <p></p>
@@ -201,6 +201,22 @@
                 <p></p>
             {%endfor%}
             <p></p>
+
+            {% if spells %}
+                <label class='label-description'>Spells - Cantrips</label>
+                <p></p>
+                {% for value6 in spells.spell_list.cantrips %}
+                    <label class='description-value'>- {{ value6.name }}</label>
+                    <p></p>
+                {% endfor %}
+                <p></p>
+                <label class='label-description'>Spells - 1º Level</label>
+                <p></p>
+                {% for value7 in spells.spell_list.level_1 %}
+                    <label class='description-value'>- {{ value7.name }}</label>
+                    <p></p>
+                {% endfor %}
+            {% endif %}
         </div>
         <div class='col-4' id=ficha>
             <label class='label-description'>Proficiencies:</label>

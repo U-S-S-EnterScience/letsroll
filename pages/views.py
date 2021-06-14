@@ -18,10 +18,12 @@ from pages.models import character_Sheet
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 
-@login_required     # pra acessar a view o usuário precisa estar logado
+
+@login_required  # pra acessar a view o usuário precisa estar logado
 def home(request):
     value = character_Sheet.objects.all().filter(user=request.user)
     return render(request, "home.html", {"value": value})
+
 
 def call(url):
     r = requests.get(url)
@@ -848,9 +850,6 @@ def sheet_create(request):
             return render(request, "sheet.html", character)
 
     return render(request, "text_name.html", {"name": "Name"})
-
-
-
 
 
 def password_reset_request(request):
