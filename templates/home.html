@@ -17,11 +17,12 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 {% for item in value %}
                     <div class="col">
-                        <div class="card" style="background-color: rgb(250,244,209); font-family: Papyrus;">
-                            <div class="card-body">
-                            <h5 class="card-title" style="font-size: xx-large; font-weight: bold;">{{ item.name }}</h5>
+                        <div class="card">
+                            <div class="card w-100" style="background-color: rgb(250,244,209); font-family: Papyrus;">
+                            <h5 class="card-title" style="font-size: xx-large; font-weight: bold;" size= 12>{{ item.name }}</h5>
                             <p class="card-text" style="font-size: large; font-weight: bold;">Race: {{ item.race }}</p>
-                            <p class="card-text"style="font-size: large; font-weight: bold;">Class: {{ item.clas }} | Level: {{ item.level }}</p>
+                            <p class="card-text"style="font-size: large; font-weight: bold;">Class: {{ item.clas }}</p>
+                            <p class="card-text"style="font-size: large; font-weight: bold;">Level: {{ item.level }}</p>
                             <a href="/sheet/{{ item.id }}" class="card-link" style="font-size: large; font-weight: bold;">Open Character Sheet</a>
                             </div>
                         </div>
