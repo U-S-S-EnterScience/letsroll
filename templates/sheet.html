@@ -147,26 +147,7 @@
                 <p></p>
             {%endfor%}
             <p></p>
-            <!--<h2>Attributes</h2>
-            <ul>
-            {% for value0 in ability %}
-                <li>{{ value0.ability_score.name }}: {{ value0.value }} ({{ value0.bonus }})</li>
-            {%endfor%}
-            </ul>
-    
-            <h2>Proficiencies</h2>
-            <ul>
-            {% for value1 in proficiencies %}
-                <li>{{ value1.name }}</li>
-            {%endfor%}
-            </ul>
-    
-            <h2>Languages</h2>
-            <ul>
-            {% for value2 in languages %}
-                <li>{{ value2.name }}</li>
-            {%endfor%}
-            </ul>-->
+
             <label class='label-description'>Skills:</label>
             <p></p>
             {% for value3 in skills %}
@@ -177,27 +158,14 @@
     
             <h2 class="label-description">Stats</h2>
             <p class="description-value">Proficience Bonus: {{ prof_bonus }}</p>
-    
-            <!--<h3>Features</h3>
-            <ul>
-                {% for value5 in stats.features %}
-                    <li>{{ value5.name }}</li>
-                {% endfor %}
-            </ul>
-    
-            <h2>Equipments</h2>
-            <ul>
-                {% for value5 in equipment %}
-                    <li>{{ value5.equipment.name }}, quantity: {{ value5.quantity }}</li>
-                {% endfor %}
-            </ul>-->
+
         </div>
         <div class='col-4' id=ficha>
             <label class='label-description'>Attributes</label>
             <p></p>
             {% for value0 in ability %}
-                <label class='description-value' for="character-attributes-value0">-{{ value0.ability_score.name }}:</label>
-                <input class='description-value' id='character-attributes-value0' value='{{ value0.value }} ({{ value0.bonus }})' readonly=true size='5'></input>
+                <label class='description-value' for="{{ value0.ability_score.name }}">-{{ value0.ability_score.name }}:</label>
+                <input class='description-value' id="{{ value0.ability_score.name }}" value='{{ value0.value }} ({{ value0.bonus }})' readonly=true size='5'></input>
                 <p></p>
             {%endfor%}
             <p></p>

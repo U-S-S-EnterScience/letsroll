@@ -9,8 +9,6 @@
     <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: center;margin-top: 50px; padding-bottom: 50px;  "class="home-ground ">
         <div style=" background-color: rgb(250,244,209); justify-content: center; display: flex;" class="pt-3 col-md-12">
 
-
-    <!--<h2 class="col-md-4" style="color: rgb(107, 107, 107);">Enter</h2>-->
     <form method="post">                                                <!-- Formulário para logar -->
         {% csrf_token %}
         {{ form|crispy }}      

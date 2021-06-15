@@ -10,8 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os 
-import sys
+import os
 from decouple import config
 from pathlib import Path
 
