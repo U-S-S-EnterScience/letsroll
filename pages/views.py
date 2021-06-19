@@ -2,6 +2,7 @@ import json
 import requests
 import random
 import math
+import datetime
 
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User
@@ -9,11 +10,14 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models.query_utils import Q
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from pages.models import character_Sheet
+
+from django.contrib import messages
+from django.core.paginator import Paginator
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
@@ -24,6 +28,13 @@ def home(request):
     value = character_Sheet.objects.all().filter(user=request.user)
     return render(request, "home.html", {"value": value})
 
+@login_required
+def delete(request, id):
+    personagem = get_object_or_404(character_Sheet, pk=id)
+    personagem.delete()
+    
+    return redirect('/')
+
 
 def call(url):
     r = requests.get(url)
@@ -31,7 +42,7 @@ def call(url):
 
 
 def sheet(request, id):
-    char = character_Sheet.objects.get(id=id).sheet
+    char = get_object_or_404(character_Sheet, pk=id).sheet
     return render(request, "sheet.html", char)
 
 

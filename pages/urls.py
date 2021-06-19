@@ -9,4 +9,5 @@ urlpatterns = [
     path('sheet/<int:id>', sheet, name='sheet'),
     path('sheet_create/', sheet_create, name='sheet_create'),
     path("password_reset", views.password_reset_request, name="password_reset"),
+    path('delete/<int:id>', views.delete, name="delete"),
 ]
