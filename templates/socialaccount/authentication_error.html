@@ -5,7 +5,12 @@
 {% block head_title %}{% trans "Social Network Login Failure" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Falha ao Entrar com Rede Social" %}</h1>
+div class="col-md-12">
+        <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: left;margin-topleft: 50px; padding-bottom: 50px;  "class="home-ground ">
+            <div style=" background-color: rgb(250,244,209); justify-content: center; display: flex;" class="pt-3 col-md-12">
+                <!--<h2 class="col-md-4">Cadastro</h2>-->
+                <div class="col-md-12">
+                <h1>{% trans "Failed to Login with Social Network" %}</h1>
 
-<p>{% trans "Um erro foi encontrado ao tentar entrar com a sua conta de rede social." %}</p>
+                <p>{% trans "An error was encountered while trying to sign in with your social network account." %}</p>
 {% endblock %}

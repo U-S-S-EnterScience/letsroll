@@ -7,25 +7,30 @@
 
 
 {% block content %}
-<h1 style="color:rgb(250,244,209)">{% trans "Confirm E-mail Address" %}</h1>
+<div class="col-md-12">
+        <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align:left;margin-topleft: 50px; padding-bottom: 50px;  "class="home-ground ">
+            <div style=" background-color: rgb(250,244,209); justify-content: center; display: flex;" class="pt-3 col-md-12">
+                <!--<h2 class="col-md-4">Cadastro</h2>-->
+                <div class="col-md-12">
+                <h1 style="color:rgb(0,0,0)">{% trans "Confirm E-mail Address" %}</h1>
 
-{% if confirmation %}
+                {% if confirmation %}
 
-{% user_display confirmation.email_address.user as user_display %}
+                {% user_display confirmation.email_address.user as user_display %}
 
-<p style="color:rgb(250,244,209)">{% blocktrans with confirmation.email_address.email as email %}Por favor, confirme que este  <a href="mailto:{{ email }}">{{ email }}</a> é o e-mail do usuário {{ user_display }}.{% endblocktrans %}</p>
+                <p style="color:rgb(0,0,0)">{% blocktrans with confirmation.email_address.email as email %}Please confirm that this  <a href="mailto:{{ email }}">{{ email }}</a> is the user's email {{ user_display }}.{% endblocktrans %}</p>
 
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button class="col-md-2 btn btn-success mr-5" type="submit">{% trans 'Confirm' %}</button>
-</form>
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                {% csrf_token %}
+                    <button class="col-md-2 btn btn-success mr-5" type="submit">{% trans 'Confirm' %}</button>
+                </form>
 
-{% else %}
+                {% else %}
 
-{% url 'account_email' as email_url %}
+                {% url 'account_email' as email_url %}
 
-<p>{% blocktrans %}Este e-mail de confirmação ou link expirou. Por favor <a href="{{ email_url }}">Solicite um novo pedido de confirmação </a>.{% endblocktrans %}</p>
+                <p>{% blocktrans %}This confirmation email or link has expired. <a href="{{ email_url }}">Request a new confirmation request </a>.{% endblocktrans %}</p>
 
-{% endif %}
+                {% endif %}
 
 {% endblock %}

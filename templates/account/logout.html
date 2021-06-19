@@ -3,10 +3,10 @@
 {% block title %}Sair{% endblock %}
 
 {% block content %}
-    <h2>Sair</h2>
-    <p>Você tem certeza que deseja sair?</p>
+    <h2>Logout</h2>
+    <p>Are you sure you want to quit?</p>
     <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
-        <button class="btn btn-danger" type="submit">Sair</button>
+        <button class="btn btn-danger" type="submit">Logout</button>
     </form>
 {% endblock %}

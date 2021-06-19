@@ -125,11 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 
@@ -175,7 +175,7 @@ SITE_ID = 1
 
 # Email
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"    # Quando um usuario se cadastrar, vou receber um email no console
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"            # Quando um usuario se cadastrar, vou receber um email no console
 '''
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend" 
 DEFAULT_FROM_EMAIL = "suporte@letsroll.com.br"
@@ -184,6 +184,6 @@ ANYMAIL = {
     "MAILGUN_API_KEY": config('MAILGUNKEY'),
     "MAILGUN_SENDER_DOMAIN": config('MAILGUNDOMAIN'),
 }
-''' 
+'''
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"

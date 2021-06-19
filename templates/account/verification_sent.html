@@ -5,8 +5,13 @@
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
-    <h1 style="color:rgb(250,244,209)">{% trans "Verify Your E-mail Address" %}</h1>
+<div class="col-md-12">
+        <div style="background-color: rgb(250,244,209); border-radius: 3px; box-shadow: 1,1,1,1;text-align: left;margin-topleft: 50px; padding-bottom: 50px;  "class="home-ground ">
+            <div style=" background-color: rgb(250,244,209); justify-content: center; display: flex;" class="pt-3 col-md-12">
+                <!--<h2 class="col-md-4">Cadastro</h2>-->
+                <div class="col-md-12">
+                <h1 style="color:rgb(0,0,0)">{% trans "Verify Your E-mail Address" %}</h1>
 
-    <p style="color:rgb(250,244,209)">{% blocktrans %}Enviamos um e-mail de verificação para você. Acesse o link fornecido para finalizar o processo de cadastro. Contacte-nos se não o receber dentro de alguns minutos.{% endblocktrans %}</p>
+                <p style="color:rgb(0,0,0)">{% blocktrans %}We send you a verification email. Access the link provided to complete the registration process.{% endblocktrans %}</p>
 
 {% endblock %}
